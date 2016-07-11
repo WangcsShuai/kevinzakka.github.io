@@ -36,7 +36,7 @@ The KNN classifier is also a __non parametric__ and __instance-based__ learning 
 ## How does KNN work?
 Given a positive integer K (usually odd to avoid tie situations), an unseen observation $$x$$ and a similarity metric $$d$$, KNN essentially boils down to forming a majority vote between the K most similar instances to $$x$$. Similarity is equivalent to taking the distance between two given data points. A popular choice for $$d$$ is the Euclidean distance
 
-$$d(x, x') = d(x',x) = \sqrt{\left(x_1 - x'_1 \right)^2 + \left(x_2 - x'_2 \right)^2 + \dotsc + \left(x_n - x'_n \right)^2}$$
+$$d(x, x') = \sqrt{\left(x_1 - x'_1 \right)^2 + \left(x_2 - x'_2 \right)^2 + \dotsc + \left(x_n - x'_n \right)^2}$$
 
 but other measures can be more suitable for a given setting and include the Manhattan, Chebyshev and Hamming distance.
 
@@ -291,7 +291,7 @@ try:
 except ValueError:
 	print('Can\'t have more neighbors than training samples!!')
 ```
-That's it. We've just written our first machine learning algorithm from scratch!
+That's it, we've just written our first machine learning algorithm from scratch!
 
 ## Pros and Cons of KNN
 
@@ -320,4 +320,4 @@ That's it. We've just written our first machine learning algorithm from scratch!
 
 In this tutorial, we learned about the K-Nearest Neighbor algorithm, how it works and how it can be applied in a classification setting using scikit-learn's learning pipeline. We also implemented the algorithm in Python from scratch in such a way that we understand the inner-workings of the algorithm. Finally, we explored the pros and cons of KNN and the many improvements that can be made to adapt it to different project needs.
 
-If you want to practice some more with the algorithm, try and run it on the __Breast Cancer Wisconsin__ dataset which you can find in the UC Irvine Machine Learning repository. You'll need to preprocess the data carefully this time. Do it once with scikit-learn's algorithm and a second time with our version of the code but try adding the weighted distance implementation.
+If you want to practice some more with the algorithm, try and run it on the __Breast Cancer Wisconsin__ dataset which you can find in the UC Irvine Machine Learning repository. You'll need to preprocess the data carefully this time. Do it once with scikit-learn's algorithm and a second time with our version of the code but try adding the weighted distance implementation. You can access the full code from this post [on my Github](https://github.com/kevinzakka/blog-code).
