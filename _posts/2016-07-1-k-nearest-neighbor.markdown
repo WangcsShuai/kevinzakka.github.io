@@ -7,7 +7,7 @@ tags: [KNN, machine learning, classification, neighbours]
 comments: true
 mathjax: true
 ---
-This is an in-depth tutorial designed to introduce you to a simple, yet powerful classification algorithm called K-Nearest-Neighbors (KNN). We will go over the intuition and mathematical detail of the algorithm, apply it to a real-world dataset to see exactly how it works (i.e. input/output, accuracy metrics etc.), and finally gain an intrinsic understanding of the algorithm by writing it from scratch in code. Finally, we will look at ways in which we can improve KNN.
+This is an in-depth tutorial designed to introduce you to a simple, yet powerful classification algorithm called K-Nearest-Neighbors (KNN). We will go over the intuition and mathematical detail of the algorithm, apply it to a real-world dataset to see exactly how it works, and finally gain an intrinsic understanding of the algorithm by writing it from scratch in code. Finally, we will look at ways in which we can improve KNN.
 
 ## Table of Contents
 
@@ -24,7 +24,7 @@ This is an in-depth tutorial designed to introduce you to a simple, yet powerful
 
 ## Introduction
 
-The KNN algorithm is a robust and versatile classifier that is often used to provide a benchmark to more complex classifiers such as Artificial Neural Networks (ANN) and Support Vector Machine (SVM). Despite its simplicity, KNN can outperform more powerful classifiers and is used in a variety of applications such as economic forecasting, data compression and genetics. For example, KNN was leveraged in a study of functional genomics for the assignment of genes based on their expression profiles.
+The KNN algorithm is a robust and versatile classifier that is often used to provide a benchmark for more complex classifiers such as Artificial Neural Networks (ANN) and Support Vector Machines (SVM). Despite its simplicity, KNN can outperform more powerful classifiers and is used in a variety of applications such as economic forecasting, data compression and genetics. For example, KNN was leveraged in a study of functional genomics for the assignment of genes based on their expression profiles.
 
 ## What is KNN?
 Let's first start by establishing some definitions and notations. We will use $$x$$ to denote a *feature* (also known as: predictor, attribute) and $$y$$ to denote the *target* (also known as: response, label, class)  we are trying to predict.
@@ -40,20 +40,20 @@ More formally, in the classification setting, KNN classifier works in two steps:
 
 - It runs through the whole dataset computing $$d$$ between $$x$$ and each training observation. We'll call the K points in the training data that are closest to $$x$$ the set $$\mathcal{A}$$.
 
-- It then estimates the conditional probability for each class as the fraction of points in $$\mathcal{A}$$ with that given class label. (Note $$I(x)$$ is the indicator function which evaluates to $$1$$ when the argument $$x$$ is true and $$0$$ otherwise)
+- It then estimates the conditional probability for each class, that is, the fraction of points in $$\mathcal{A}$$ with that given class label. (Note $$I(x)$$ is the indicator function which evaluates to $$1$$ when the argument $$x$$ is true and $$0$$ otherwise)
 
 $$P(y = j | X = x) = \frac{1}{K} \sum_{i \in \mathcal{A}} I(y^{(i)} = j)$$
 
 Finally, our input $$x$$ gets assigned to the class with the largest probability.
 
 ## More on K
-Let's talk a bit about the variable K. Like most Machine Learning algorithms, the K in KNN is a hyperparameter that we must tune in order to get the best possible classifier for our dataset. Essentially, the choice of K has an effect on the shape of the prediction curves of our classifier. 
+Let's talk a bit about the variable K. Like most machine learning algorithms, the K in KNN is a hyperparameter that we must tune in order to get the best possible classifier for a given dataset. Essentially, the choice of K has an effect on the shape of the prediction curves (i.e. decision boundary) of our classifier. 
 
 In fact, when K is small, we are restraining the region of a given prediction and forcing our classifier to be “more blind” to the overall distribution. A small value for K provides the most flexible fit, which will have low bias but high variance. Graphically, our decision boundary will be more jagged.
 
 <img src="/assets/1nearestneigh.png">
 
-On the other hand, a higher K averages more voters in each prediction and hence is more resilient to changes in an observation. Larger values of K will have smoother decision boundaries which means lower variance but increased bias.
+On the other hand, a higher K averages more voters in each prediction and hence is more resilient to outliers. Larger values of K will have smoother decision boundaries which means lower variance but increased bias.
 
 <img src="/assets/20nearestneigh.png">
 
@@ -66,9 +66,9 @@ Without further ado, let's see how KNN can be leveraged in Python for a classifi
 
 The data set we'll be using is the [Iris Flower Dataset](https://archive.ics.uci.edu/ml/datasets/Iris) (IFD) which was first introduced in 1936 by the famous statistician Ronald Fisher and consists of 50 observations from each of three species of Iris (*Iris setosa, Iris virginica and Iris versicolor*). Four features were measured from each sample: the length and the width of the sepals and petals. Our goal is to train the KNN algorithm to be able to distinguish the species from one another given the measurements of the 4 features.
 
-Go ahead and download the data (*Download Data Folder > iris.data*) and save it in the directory of your choice.
+Go ahead and download the data `Download Data Folder > iris.data` and save it in the directory of your choice.
 
-The first thing we need to do is load the data set. It is in CSV format without a header line so we'll start by using pandas' *read_csv* function. 
+The first thing we need to do is load the data set. It is in CSV format without a header line so we'll start by using pandas' `read_csv` function. 
 
 ```python
 # loading libraries
