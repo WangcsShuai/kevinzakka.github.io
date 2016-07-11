@@ -5,7 +5,7 @@ date: 2016-07-01
 excerpt: "I'll introduce the intuition and math behind KNN, cover a real-life example, and explore the inner-workings of the algorithm by implementing the code from scratch."
 tags: [KNN, machine learning, classification, neighbours]
 comments: true
-use_math: true
+mathjax: true
 ---
 This is an in-depth tutorial designed to introduce you to a simple, yet powerful classification algorithm called K-Nearest-Neighbors (KNN). We will go over the intuition and mathematical detail of the algorithm, apply it to a real-world dataset to see exactly how it works (i.e. input/output, accuracy metrics etc.), and finally gain an intrinsic understanding of the algorithm by writing it from scratch in code. Finally, we will look at ways in which we can improve KNN.
 
@@ -27,20 +27,20 @@ This is an in-depth tutorial designed to introduce you to a simple, yet powerful
 The KNN algorithm is a robust and versatile classifier that is often used to provide a benchmark to more complex classifiers such as Artificial Neural Networks (ANN) and Support Vector Machine (SVM). Despite its simplicity, KNN can outperform more powerful classifiers and is used in a variety of applications such as economic forecasting, data compression and genetics. For example, KNN was leveraged in a study of functional genomics for the assignment of genes based on their expression profiles.
 
 ## What is KNN?
-Let's first start by establishing some definitions and notations. We will use \\(x\\) to denote a *feature* (also known as: predictor, attribute) and $y$ to denote the *target* (also known as: response, label, class)  we are trying to predict.
+Let's first start by establishing some definitions and notations. We will use $x$ to denote a *feature* (also known as: predictor, attribute) and $y$ to denote the *target* (also known as: response, label, class)  we are trying to predict.
 
-KNN falls in the __supervised learning__ family of algorithms. Informally, this means that we are given a labelled dataset consiting of training observations $$(x,y)$$ and want to capture the relationship between $$x$$ and $$y$$. More formally, our goal is to learn a function $$h : X  → Y$$ so that given any unseen observation $$x$$, $$h(x)$$ can confidently predict the corresponding output $$y$$.
+KNN falls in the __supervised learning__ family of algorithms. Informally, this means that we are given a labelled dataset consiting of training observations $(x,y)$ and want to capture the relationship between $x$ and $y$. More formally, our goal is to learn a function $h : X  → Y$ so that given any unseen observation $x$, $h(x)$ can confidently predict the corresponding output $y$.
 
 The KNN classifier is also a __non parametric__ and __instance-based__ learning algorithm. Non-parametric means it makes no explicit assumptions about the functional form of h, avoiding the danger of mismodeling the underlying distribution of the data. Furthermore, instance-based means it defers processing of the training data to the testing phase. So only when a query is made (i.e. when we ask it to predict a label given an input) will KNN run through the whole data and spit out the response. You can probably already tell this has a huge disadvantage both time and memory wise!
 
 ## How does KNN work?
-Given a positive integer K (usually odd to avoid tie situations), an unseen observation $$x$$ and a similarity metric $$d$$, KNN essentially boils down to forming a majority vote between the K most similar instances to $x$. The similarity measure is usually the __L2 Norm__ (a.k.a Euclidean Distance) although it can change depending on the data we are working with.
+Given a positive integer K (usually odd to avoid tie situations), an unseen observation $x$ and a similarity metric $d$, KNN essentially boils down to forming a majority vote between the K most similar instances to $x$. The similarity measure is usually the __L2 Norm__ (a.k.a Euclidean Distance) although it can change depending on the data we are working with.
 
 More formally, in the classification setting, KNN classifier works in two steps:
 
-- It runs through the whole dataset computing $$d$$ between $$x$$ and each training observation. We'll call the K points in the training data that are closest to $$x$$ the set $$\mathcal{A}$$.
+- It runs through the whole dataset computing $d$ between $x$ and each training observation. We'll call the K points in the training data that are closest to $x$ the set $\mathcal{A}$.
 
-- It then estimates the conditional probability for each class as the fraction of points in $$\mathcal{A}$$ with that given class label. (Note $$I(x)$$ is the indicator function which evaluates to $$1$$ when the argument $$x$$ is true and $$0$$ otherwise)
+- It then estimates the conditional probability for each class as the fraction of points in $\mathcal{A}$ with that given class label. (Note $I(x)$ is the indicator function which evaluates to $1$ when the argument $x$ is true and $0$ otherwise)
 
 $$P(y = j | X = x) = \frac{1}{K} \sum_{i \in \mathcal{A}} I(y^{(i)} = j)$$
 
@@ -51,20 +51,20 @@ Let's talk a bit about the variable K. Like most Machine Learning algorithms, th
 
 In fact, when K is small, we are restraining the region of a given prediction and forcing our classifier to be “more blind” to the overall distribution. A small value for K provides the most flexible fit, which will have low bias but high variance. Graphically, our decision boundary will be more jagged.
 
-<img src="/assets/img/1nearestneigh.png">
+<img src="/assets/1nearestneigh.png">
 
 On the other hand, a higher K averages more voters in each prediction and hence is more resilient to changes in an observation. Larger values of K will have smoother decision boundaries which means lower variance but increased bias.
 
-<img src="/assets/img/20nearestneigh.png">
+<img src="/assets/20nearestneigh.png">
 
 (If you want to learn more about the bias-variance tradeoff, check out [Scott Roe's Blog post](http://scott.fortmann-roe.com/docs/BiasVariance.html). You can mess around with the value of K and watch the decision boundary change!)
 
 ## Exploring KNN in Code
-<img src="/assets/img/flower.jpg">
+<img src="/assets/flower.jpg">
 
 Without further ado, let's see how KNN can be leveraged in Python for a classification problem. We’re gonna head over to the UC Irvine Machine Learning Repository, an amazing source for a variety of free and interesting data sets.  
 
-The data set we'll be using is the [Iris Flower Dataset](https://archive.ics.uci.edu/ml/datasets/Iris) (IFD) which was first introduced in $$1936$$ by the famous statistician Ronald Fisher and consists of $$50$$ observations from each of three species of Iris (*Iris setosa, Iris virginica and Iris versicolor*). Four features were measured from each sample: the length and the width of the sepals and petals. Our goal is to train the KNN algorithm to be able to distinguish the species from one another given the measurements of the $$4$$ features.
+The data set we'll be using is the [Iris Flower Dataset](https://archive.ics.uci.edu/ml/datasets/Iris) (IFD) which was first introduced in $1936$ by the famous statistician Ronald Fisher and consists of $50$ observations from each of three species of Iris (*Iris setosa, Iris virginica and Iris versicolor*). Four features were measured from each sample: the length and the width of the sepals and petals. Our goal is to train the KNN algorithm to be able to distinguish the species from one another given the measurements of the $4$ features.
 
 Go ahead and download the data (*Download Data Folder > iris.data*) and save it in the directory of your choice.
 
@@ -83,7 +83,7 @@ names = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'class']
 df = pd.read_csv('/Users/kevin/Desktop/Blog/iris.data.txt', header=None, names=names)
 df.head()
 ```
-Next, it would be cool if we could examine the data before rushing into classification so that we can have a deeper understanding of the problem at hand. R has some beautiful visualization tools, so we'll be using it to create $$2$$ quick scatter plots of __sepal width vs sepal length__ and __petal width vs petal length__. 
+Next, it would be cool if we could examine the data before rushing into classification so that we can have a deeper understanding of the problem at hand. R has some beautiful visualization tools, so we'll be using it to create $2$ quick scatter plots of __sepal width vs sepal length__ and __petal width vs petal length__. 
 
 ```r
 # loading packages
@@ -100,13 +100,13 @@ iris %>%
   layer_points()
 ```
 
-<img src="/assets/img/sep_plot.png">
+<img src="/assets/sep_plot.png">
 
-<img src="/assets/img/pet_plot.png">
+<img src="/assets/pet_plot.png">
 
 A quick study of the above graphs reveals some strong classification criterion. We can say that setosas have small petals, versicolor have medium sized ones and virginica have relatively larger petals. Furthermore, setosas seem to have shorter and wider sepals than the other two classes. Hence, without even using an algorithm, we can intuitevely construct a classifier that can do very well on the dataset.
 
-The next step in our pipeline is to create our design matrix $$X$$ and our target vector $$y$$ as well as split our data into training and test sets. We will do so with the following code:
+The next step in our pipeline is to create our design matrix $X$ and our target vector $y$ as well as split our data into training and test sets. We will do so with the following code:
 
 ```python
 # loading library
@@ -114,7 +114,7 @@ from sklearn.cross_validation import train_test_split
 
 # create design matrix X and target vector y
 X = np.array(df.ix[:, 0:4]) 	# end index is exclusive
-y = np.array(df['class']) 		# another way of indexing a pandas df
+y = np.array(df['class']) 	# another way of indexing a pandas df
 
 # split into train and test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
@@ -142,11 +142,11 @@ print accuracy_score(y_test, pred)
 ## Parameter Tuning with Cross Validation
 At this point, you're probably wondering how to pick K. In order to "tune" the hyperparameter K so that we can obtain the best possible classifier, we're gonna use a resampling method called k-fold cross validation. (Note that the k in k-fold it totally unrelated to the K in KNN!)
 
-<img src="/assets/img/k_fold_cv.jpg">
+<img src="/assets/k_fold_cv.jpg">
 
 As seen above, k-fold cross validation involves randomly dividing the training set into k groups, or folds, of approximately equal size. The first fold is treated as a validation set, and the method is fit on the remaining k − 1 folds. The error metric (i.e. misclassification rate for classification and mean squared error for regression) is then computed on the observations in the held-out fold. This procedure is repeated k times; each time, a different group of observations is treated as a validation set. This process results in k estimates of the test error which are then averaged out.
 
-Let's go ahead and perform 10-fold cross validation on our dataset using a generated list of odd K's ranging from $$1$$ to $$50$$.
+Let's go ahead and perform 10-fold cross validation on our dataset using a generated list of odd K's ranging from $1$ to $50$.
 
 ```python
 # creating odd list of K for KNN
@@ -182,18 +182,18 @@ plt.ylabel('Misclassification Error')
 plt.show()
 ```
 
-<img src="/assets/img/cv_knn.png">
+<img src="/assets/cv_knn.png">
 
-Our best K turns out to be $$7$$.
+Our best K turns out to be $7$.
 
 ## Writing our Own KNN from Scratch
 So far, we've studied how KNN works and seen how we can use it for a classification task using scikit-learn's generic pipeline (i.e. input, instantiate train, predict and evaluate). Now, it's time to delve deeper into KNN by trying to code it ourselves from scratch.
 
 A machine learning algorithm usually consists of 2 main blocks: 
 
-- a __training__ block that takes as input the training data $$X$$ and the corresponding target $$y$$ and outputs a learned model $$h$$. 
+- a __training__ block that takes as input the training data $X$ and the corresponding target $y$ and outputs a learned model $h$. 
 
-- a __predict__ block that takes as input new and unseen observations and uses the function $$h$$ to output their corresponding responses.
+- a __predict__ block that takes as input new and unseen observations and uses the function $h$ to output their corresponding responses.
  
 In the case of KNN, which as discussed earlier, is a lazy algorithm, the training block reduces to just memorizing the training data. Let's go ahead a write a python method that does so.
 
@@ -259,7 +259,7 @@ predictions = np.asarray(predictions)
 accuracy = accuracy_score(y_test, predictions)
 print('\nThe accuracy of our classifier is %d%%' % accuracy*100)
 ```
-$$98\%$$ accuracy! We're as good as scikit-learn's algorithm, but probably less efficient. Let's try again with a value of $$K = 140$$. We get an `IndexError: list index out of range` error. In fact, K can't be arbitrarily large since we can't have more neighbors than the number of observations in the training data set. So let's fix our code to safeguard against such an error.
+$98\%$ accuracy! We're as good as scikit-learn's algorithm, but probably less efficient. Let's try again with a value of $K = 140$. We get an `IndexError: list index out of range` error. In fact, K can't be arbitrarily large since we can't have more neighbors than the number of observations in the training data set. So let's fix our code to safeguard against such an error.
 
 ```python
 def kNearestNeighbor(X_train, y_train, X_test, predictions, k):
