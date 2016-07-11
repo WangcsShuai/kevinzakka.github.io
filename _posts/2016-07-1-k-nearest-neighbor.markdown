@@ -34,7 +34,11 @@ KNN falls in the __supervised learning__ family of algorithms. Informally, this 
 The KNN classifier is also a __non parametric__ and __instance-based__ learning algorithm. Non-parametric means it makes no explicit assumptions about the functional form of h, avoiding the danger of mismodeling the underlying distribution of the data. Furthermore, instance-based means it defers processing of the training data to the testing phase. So only when a query is made (i.e. when we ask it to predict a label given an input) will KNN run through the whole data and spit out the response. You can probably already tell this has a huge disadvantage both time and memory wise!
 
 ## How does KNN work?
-Given a positive integer K (usually odd to avoid tie situations), an unseen observation $$x$$ and a similarity metric $$d$$, KNN essentially boils down to forming a majority vote between the K most similar instances to $$x$$. The similarity measure is usually the __L2 Norm__ (a.k.a Euclidean Distance) although it can change depending on the data we are working with.
+Given a positive integer K (usually odd to avoid tie situations), an unseen observation $$x$$ and a similarity metric $$d$$, KNN essentially boils down to forming a majority vote between the K most similar instances to $$x$$. Similarity is equivalent to taking the distance between two given data points. A popular choice for $$d$$ is the Euclidean distance
+
+$$d(x, x') = d(x',x) = \sqrt{\left(x_1 - x'_1 \right)^2 + \left(x_2 - x'_2 \right)^2 + \dotsc + \left(x_n - x'_n \right)^2}$$
+
+but other measures can be more suitable for a given setting and include the Manhattan, Chebyshev and Hamming distance.
 
 More formally, in the classification setting, KNN classifier works in two steps:
 
