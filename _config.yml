@@ -1,0 +1,18 @@
+# Site settings
+title: Kevin Zakka's Blog
+email: 
+description: "Academic Journal"
+baseurl: ""
+url: "http://kevinzakka.github.io"
+twitter_username: kevin_zakka
+github_username:  kevinzakka
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+highlighter: rouge
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
