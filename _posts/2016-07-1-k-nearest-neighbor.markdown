@@ -13,9 +13,9 @@ This is an in-depth tutorial designed to introduce you to a simple, yet powerful
 
 1. [Introduction](#introduction)
 2. [What is KNN?](#what-is-knn)
-3. [How does KNN work?](#how-does-knn-work?)
+3. [How does KNN work?](#how-does-knn-work)
 4. [More on K](#more-on-k)
-5. [Exploring KNN in code](#exploring-knn-in-code)
+5. [Exploring KNN in Code](#exploring-knn-in-code)
 6. [Parameter Tuning with Cross Validation](#parameter-tuning-with-cross-validation)
 7. [Writing our Own KNN from Scratch](#writing-our-own-knn-from-scratch)
 8. [Pros and Cons of KNN](#pros-and-cons-of-knn)
