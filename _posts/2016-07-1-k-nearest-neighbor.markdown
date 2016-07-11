@@ -12,7 +12,7 @@ This is an in-depth tutorial designed to introduce you to a simple, yet powerful
 ## Table of Contents
 
 1. [Introduction](#introduction)
-2. [What is KNN?](#what-is-knn-?)
+2. [What is KNN?](#what-is-knn)
 3. [How does KNN work?](#how-does-knn-work?)
 4. [More on K](#more-on-k)
 5. [Exploring KNN in code](#exploring-knn-in-code)
@@ -66,9 +66,9 @@ Without further ado, let's see how KNN can be leveraged in Python for a classifi
 
 The data set we'll be using is the [Iris Flower Dataset](https://archive.ics.uci.edu/ml/datasets/Iris) (IFD) which was first introduced in 1936 by the famous statistician Ronald Fisher and consists of 50 observations from each of three species of Iris (*Iris setosa, Iris virginica and Iris versicolor*). Four features were measured from each sample: the length and the width of the sepals and petals. Our goal is to train the KNN algorithm to be able to distinguish the species from one another given the measurements of the 4 features.
 
-Go ahead and download the data `Download Data Folder > iris.data` and save it in the directory of your choice.
+Go ahead and `Download Data Folder > iris.data` and save it in the directory of your choice.
 
-The first thing we need to do is load the data set. It is in CSV format without a header line so we'll start by using pandas' `read_csv` function. 
+The first thing we need to do is load the data set. It is in CSV format without a header line so we'll use pandas' `read_csv` function. 
 
 ```python
 # loading libraries
@@ -99,12 +99,13 @@ iris %>%
   ggvis(~Petal.Length, ~Petal.Width, fill = ~Species) %>%
   layer_points()
 ```
+Note that we've accessed the `iris` dataframe which comes preloaded in R by default.
 
 <img src="/assets/sep_plot.png">
 
 <img src="/assets/pet_plot.png">
 
-A quick study of the above graphs reveals some strong classification criterion. We can say that setosas have small petals, versicolor have medium sized ones and virginica have relatively larger petals. Furthermore, setosas seem to have shorter and wider sepals than the other two classes. Hence, without even using an algorithm, we can intuitevely construct a classifier that can do very well on the dataset.
+A quick study of the above graphs reveals some strong classification criterion. We observe that setosas have small petals, versicolor have medium sized ones and virginica have relatively larger petals. Furthermore, setosas seem to have shorter and wider sepals than the other two classes. Hence, without even using an algorithm, we can intuitevely construct a classifier that can do very well on the dataset.
 
 The next step in our pipeline is to create our design matrix $$X$$ and our target vector $$y$$ as well as split our data into training and test sets. We will do so with the following code:
 
@@ -223,7 +224,6 @@ def predict(X_train, y_train, x_test, k):
 	# make a list of the k neighbors' targets
 	for i in range(k):
 		index = distances[i][1]
-		#print(y_train[index])
 		targets.append(y_train[index])
 
 	# return most common target
@@ -239,7 +239,7 @@ def kNearestNeighbor(X_train, y_train, X_test, predictions, k):
 	# train on the input data
 	train(X_train, y_train)
 
-	# predict for each testing observation
+	# loop over all observations
 	for i in range(len(X_test)):
 		predictions.append(predict(X_train, y_train, X_test[i, :], k))
 ```
@@ -259,11 +259,11 @@ predictions = np.asarray(predictions)
 accuracy = accuracy_score(y_test, predictions)
 print('\nThe accuracy of our classifier is %d%%' % accuracy*100)
 ```
-$$98\%$$ accuracy! We're as good as scikit-learn's algorithm, but probably less efficient. Let's try again with a value of $$K = 140$$. We get an `IndexError: list index out of range` error. In fact, K can't be arbitrarily large since we can't have more neighbors than the number of observations in the training data set. So let's fix our code to safeguard against such an error.
+$$98\%$$ accuracy! We're as good as scikit-learn's algorithm, but probably less efficient. Let's try again with a value of $$K = 140$$. We get an `IndexError: list index out of range` error. In fact, K can't be arbitrarily large since we can't have more neighbors than the number of observations in the training data set. So let's fix our code to safeguard against such an error. Using `try, except` we can write the following code.
 
 ```python
 def kNearestNeighbor(X_train, y_train, X_test, predictions, k):
-	# check if k is not larger than n
+	# check if k larger than n
 	if k > len(X_train):
 		raise ValueError
 		
@@ -291,14 +291,14 @@ That's it. We've just written our first machine learning algorithm from scratch!
 
 ## Pros and Cons of KNN
 
-### Pros
+#### Pros
 
 - simple to implement and understand
 - zero to little training time 
 - useful for off-the-bat analysis of data (maybe as a first step in understanding class distribution)
 - useful for multiclass data sets
 
-### Cons
+#### Cons
 
 - computationally expensive at test time, which is undesirable in industry scenarios (compare this to ANN)
 - training time can increase if we use Approximate Nearest Neighbor methods in high-dimension settings
