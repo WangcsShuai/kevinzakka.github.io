@@ -27,7 +27,7 @@ This is an in-depth tutorial designed to introduce you to a simple, yet powerful
 The KNN algorithm is a robust and versatile classifier that is often used to provide a benchmark to more complex classifiers such as Artificial Neural Networks (ANN) and Support Vector Machine (SVM). Despite its simplicity, KNN can outperform more powerful classifiers and is used in a variety of applications such as economic forecasting, data compression and genetics. For example, KNN was leveraged in a study of functional genomics for the assignment of genes based on their expression profiles.
 
 ## What is KNN?
-Let's first start by establishing some definitions and notations. We will use $x$ to denote a *feature* (also known as: predictor, attribute) and $y$ to denote the *target* (also known as: response, label, class)  we are trying to predict.
+Let's first start by establishing some definitions and notations. We will use \\(x\\) to denote a *feature* (also known as: predictor, attribute) and $y$ to denote the *target* (also known as: response, label, class)  we are trying to predict.
 
 KNN falls in the __supervised learning__ family of algorithms. Informally, this means that we are given a labelled dataset consiting of training observations $$(x,y)$$ and want to capture the relationship between $$x$$ and $$y$$. More formally, our goal is to learn a function $$h : X  → Y$$ so that given any unseen observation $$x$$, $$h(x)$$ can confidently predict the corresponding output $$y$$.
 
