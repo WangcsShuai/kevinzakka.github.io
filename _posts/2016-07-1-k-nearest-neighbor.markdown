@@ -294,7 +294,7 @@ That's it. We've just written our first machine learning algorithm from scratch!
 ### Pros
 
 - simple to implement and understand
-- Zero to little training time 
+- zero to little training time 
 - useful for off-the-bat analysis of data (maybe as a first step in understanding class distribution)
 - useful for multiclass data sets
 
