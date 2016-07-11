@@ -5,6 +5,7 @@ date: 2016-07-01
 excerpt: "I'll introduce the intuition and math behind KNN, cover a real-life example, and explore the inner-workings of the algorithm by implementing the code from scratch."
 tags: [KNN, machine learning, classification, neighbours]
 comments: true
+use_math: true
 ---
 This is an in-depth tutorial designed to introduce you to a simple, yet powerful classification algorithm called K-Nearest-Neighbors (KNN). We will go over the intuition and mathematical detail of the algorithm, apply it to a real-world dataset to see exactly how it works (i.e. input/output, accuracy metrics etc.), and finally gain an intrinsic understanding of the algorithm by writing it from scratch in code. Finally, we will look at ways in which we can improve KNN.
 
