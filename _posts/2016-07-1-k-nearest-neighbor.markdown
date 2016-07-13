@@ -85,24 +85,25 @@ The data set we'll be using is the [Iris Flower Dataset](https://archive.ics.uci
 
 Go ahead and `Download Data Folder > iris.data` and save it in the directory of your choice.
 
-The first thing we need to do is load the data set. It is in CSV format without a header line so we'll use pandas' `read_csv` function. 
+The first thing we need to do is load the data set. It is in CSV format without a header line so we'll use pandas' `read_csv` function.
 
 ```python
 # loading libraries
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 # define column names
 names = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'class']
 
 # loading training data
-df = pd.read_csv('/Users/kevin/Desktop/Blog/iris.data.txt', header=None, names=names)
+df = pd.read_csv('path/iris.data.txt', header=None, names=names)
 df.head()
 ```
-Next, it would be cool if we could examine the data before rushing into classification so that we can have a deeper understanding of the problem at hand. R has a beautiful visualization tool called `ggvis`, so we'll be using it to create 2 quick scatter plots of __sepal width vs sepal length__ and __petal width vs petal length__. 
+It's always a good idea to `df.head()` to see how the first few rows of the data frame look like. Also, note that you should replace `'path/iris.data.txt'` with that of the directory where you saved the data set.
+
+Next, it would be cool if we could plot the data before rushing into classification so that we can have a deeper understanding of the problem at hand. R has a beautiful visualization tool called `ggvis` that we will use to create 2 quick scatter plots of __sepal width vs sepal length__ and __petal width vs petal length__.  
 
 ```r
+# ============================== R code ==============================
 # loading packages
 library(ggvis)
 
@@ -115,30 +116,40 @@ iris %>%
 iris %>%
   ggvis(~Petal.Length, ~Petal.Width, fill = ~Species) %>%
   layer_points()
+# =====================================================================
 ```
+
 Note that we've accessed the `iris` dataframe which comes preloaded in R by default.
 
 <img src="/assets/sep_plot.png">
 
 <img src="/assets/pet_plot.png">
 
-A quick study of the above graphs reveals some strong classification criterion. We observe that setosas have small petals, versicolor have medium sized ones and virginica have relatively larger petals. Furthermore, setosas seem to have shorter and wider sepals than the other two classes. Hence, without even using an algorithm, we can intuitevely construct a classifier that can do very well on the dataset.
+A quick study of the above graphs reveals some strong classification criterion. We observe that setosas have small petals, versicolor have medium sized petals and virginica have the largest petals. Furthermore, setosas seem to have shorter and wider sepals than the other two classes. Pretty interesting right? Without even using an algorithm, we've managed to intuitively construct a classifier that can perform pretty well on the dataset.
 
-The next step in our pipeline is to create our design matrix $$X$$ and our target vector $$y$$ as well as split our data into training and test sets. We will do so with the following code:
+Now, it's time to get our hands wet. We'll be using `scikit-learn` to train a KNN classifier and evaluate its performance on the data set using the 4 step modeling pattern:
+
+1. Import the learning algorithm
+2. Instantiate the model
+3. Learn the model
+4. Predict the response
+
+`scikit-learn` requires that the design matrix $X$ and target vector $y$ be numpy arrays so let's oblige. Furthermore, we need to split our data into training and test sets. The following code does just that.
 
 ```python
-# loading library
+# loading libraries
+import numpy as np
 from sklearn.cross_validation import train_test_split
 
 # create design matrix X and target vector y
 X = np.array(df.ix[:, 0:4]) 	# end index is exclusive
-y = np.array(df['class']) 	# another way of indexing a pandas df
+y = np.array(df['class']) 		# another way of indexing a pandas df
 
 # split into train and test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 ```
 
-Now we define our classifer, in this case KNN, fit it to our training data and evaluate its accuracy. In this case, we'll be using an arbitrary K but we will see later on how cross validation can be used to find its optimal value.
+Finally, following the above modeling pattern, we define our classifer, in this case KNN, fit it to our training data and evaluate its accuracy. We'll be using an arbitrary K but we will see later on how cross validation can be used to find its optimal value.
 
 ```python
 # loading library
@@ -158,7 +169,7 @@ print accuracy_score(y_test, pred)
 ``` 
 
 ## Parameter Tuning with Cross Validation
-At this point, you're probably wondering how to pick K. In order to "tune" the hyperparameter K so that we can obtain the best possible classifier, we're gonna use a resampling method called k-fold cross validation. (Note that the k in k-fold it totally unrelated to the K in KNN!)
+Now, let's explore a method that can be used to *tune* the hyperparameter K.
 
 <img src="/assets/k_fold_cv.jpg">
 
