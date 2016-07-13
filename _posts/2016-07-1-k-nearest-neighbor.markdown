@@ -9,6 +9,8 @@ mathjax: true
 ---
 This is an in-depth tutorial designed to introduce you to a simple, yet powerful classification algorithm called K-Nearest-Neighbors (KNN). We will go over the intuition and mathematical detail of the algorithm, apply it to a real-world dataset to see exactly how it works, and gain an intrinsic understanding of its inner-workings by writing it from scratch in code. Finally, we will explore ways in which we can improve the algorithm.
 
+For the full code that appears on this page, visit my [Github Repository](https://github.com/kevinzakka/blog-code/)
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
@@ -328,29 +330,41 @@ That's it, we've just written our first machine learning algorithm from scratch!
 
 ## Pros and Cons of KNN
 
+
 #### Pros
 
-- simple to implement and understand
-- zero to little training time 
-- useful for off-the-bat analysis of data (maybe as a first step in understanding class distribution)
-- useful for multiclass data sets
+As you can already tell from the previous section, one of the most attractive features of the K-nearest neighbor algorithm is that is simple to understand and easy to implement. With zero to little training time, it can be a useful tool for off-the-bat analysis of some data set you are planning to run more complex algorithms on. Furthermore, KNN works just as easily with multiclass data sets whereas other algorithms are hardcoded for the binary setting. Finally, as we mentioned earlier, the non-parametric nature of KNN gives it an edge in certain settings where the data may be highly "unusual".
 
 #### Cons
 
-- computationally expensive at test time, which is undesirable in industry scenarios (compare this to ANN)
-- training time can increase if we use Approximate Nearest Neighbor methods in high-dimension settings
-- skewed class distributions will affect predictions
+One of the obvious drawbacks of the KNN algorithm is the computationally expensive testing phase which is impractical in industry settings. Note the rigid dichotomy between KNN and the more sophisticated Neural Network which has a lengthy training phase albeit a **very fast** testing phase. Furthermore, KNN can suffer from skewed class distributions. For example, if a certain class is very frequent in the training set, it will tend to dominate the majority voting of the new example (large number = more common). Finally, the accuracy of KNN can be severely degraded with high-dimension data because there is little difference between the nearest and farthest neighbor. 
 
 ## Improvements
+With that being said, there are many ways in which the KNN algorithm can be improved.
 
-- weighted distances to prevent skewed classes dominating the predictions
-- preprocess data: feature normalization
-- dimensionality reduction: PCA or use of kernels
-- Approximate Nearest Neighbor (KD tree, locality sensitive hashing)
-- distance metric should be changed for different applications (i.e. hamming distance for text classification)
+- A simple and effective way to remedy skewed class distributions is by implementing **weighed voting**. The class of each of the K neighbors is multiplied by a weight proportional to the inverse of the distance from that point to the given test point. This ensures that nearer neighbors contribute more to the final vote than the more distant ones.
+- **Changing the distance metric** for different applications may help improve the accuracy of the algorithm. (i.e. Hamming distance for text classification)
+- **Rescaling your data** makes the distance metric more meaningful. For instance, given 2 features `height` and `weight` an observation such as $x = [180, 70]$ will clearly skew the distance metric in favor of height. One way of doing this is by subtracting the mean and dividing by the standard deviation, something implemented with scikit-learn's `normalize()`.
+- **Dimensionality reduction** techniques like PCA should be executed prior to appplying KNN and help make the distance metric more meaningful.
+- **Approximate Nearest Neighbor** techniques such as using *k-d trees* to store the training observations can be leveraged to decrease testing time. Note however that these methods tend to perform poorly in high dimensions (20+). Try using **locality sensitive hashing (LHS)** for higher dimensions.
 
 ## Tutorial Summary
 
-In this tutorial, we learned about the K-Nearest Neighbor algorithm, how it works and how it can be applied in a classification setting using scikit-learn's learning pipeline. We also implemented the algorithm in Python from scratch in such a way that we understand the inner-workings of the algorithm. Finally, we explored the pros and cons of KNN and the many improvements that can be made to adapt it to different project needs.
+In this tutorial, we learned about the K-Nearest Neighbor algorithm, how it works and how it can be applied in a classification setting using scikit-learn. We also implemented the algorithm in Python from scratch in such a way that we understand the inner-workings of the algorithm. We even used R to create visualizations to further understand our data. Finally, we explored the pros and cons of KNN and the many improvements that can be made to adapt it to different project settings.
 
-If you want to practice some more with the algorithm, try and run it on the __Breast Cancer Wisconsin__ dataset which you can find in the UC Irvine Machine Learning repository. You'll need to preprocess the data carefully this time. Do it once with scikit-learn's algorithm and a second time with our version of the code but try adding the weighted distance implementation. You can access the full code from this post [on my Github](https://github.com/kevinzakka/blog-code).
+If you want to practice some more with the algorithm, try and run it on the __Breast Cancer Wisconsin__ dataset which you can find in the UC Irvine Machine Learning repository. You'll need to preprocess the data carefully this time. Do it once with scikit-learn's algorithm and a second time with our version of the code but try adding the weighted distance implementation.
+
+## References
+
+#### Notes
+- Stanfords *CS231n* notes on KNN. Click [here](http://cs231n.github.io/classification/#nn)
+- Wikipedia's KNN page - click [here](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)
+- Introduction to Statistical Learning with Applications in R, Chapters **2** and **3** - click [here](http://www-bcf.usc.edu/~gareth/ISL/)
+- Detailed Introduction to KNN - click [here](https://saravananthirumuruganathan.wordpress.com/2010/05/17/a-detailed-introduction-to-k-nearest-neighbor-knn-algorithm/)
+
+#### Resources
+- Scikit-learn's documentation for KNN - click [here](http://scikit-learn.org/stable/modules/neighbors.html)
+- Data wrangling and visualization with pandas and matplotlib from Chris Albon - click [here](http://chrisalbon.com/)
+- Intro to machine learning with scikit-learn (Great resource!) - click [here](https://github.com/justmarkham/scikit-learn-videos)
+
+Thank you for reading my guide, and I hope it helps you in theory and in practice!
