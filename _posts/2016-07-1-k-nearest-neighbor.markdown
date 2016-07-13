@@ -38,9 +38,9 @@ The KNN classifier is also a **non parametric** and **instance-based** learning 
 
 > KNN is non-parametric, instance-based and used in a supervised learning setting.
 
-It is worth noting that the minimal training phase of KNN comes both at a memory cost since we must memorize a potentially large data set as well as a computational cost during test time since classifying a given observation requires a run down of the whole data set. This is usually undesirable in a practical perspective which requires relatively fast responses.
+It is worth noting that the minimal training phase of KNN comes both at a *memory cost*, since we must store a potentially huge data set, as well as a *computational cost* during test time since classifying a given observation requires a run down of the whole data set. Practically speaking, this is undesirable since we usually want fast responses.
 
-> Minimal training but expensive testing.
+> Minimal training but expensive testing. 
 
 ## How does KNN work?
 In the classification setting, the K-nearest neighbor algorithm essentially boils down to forming a majority vote between the K most similar instances to a given "unseen" observation. Similarity is defined according to a distance metric between two data points. A popular choice is the Euclidean distance given by
@@ -64,9 +64,9 @@ Finally, our input $$x$$ gets assigned to the class with the largest probability
 An alternate way of understanding KNN is by thinking about it as calculating a decision boundary (i.e. boundaries for more than 2 classes) which is then used to classify new points.
 
 ## More on K
-Let's talk a bit about the variable K. Like most machine learning algorithms, the K in KNN is a hyperparameter that we must tune in order to get the best possible classifier for a given dataset. Essentially, the choice of K has an effect on the shape of the prediction curves (i.e. decision boundary) of our classifier. 
+At this point, you're probably wondering how to pick the variable K and what its effects are on your classifier. Well, like most machine learning algorithms, the K in KNN is a hyperparameter that you, as a designer, must pick in order to get the best possible fit for the data set. Intuitively, you can think of K as controlling the shape of the decision boundary we talked about earlier. 
 
-In fact, when K is small, we are restraining the region of a given prediction and forcing our classifier to be “more blind” to the overall distribution. A small value for K provides the most flexible fit, which will have low bias but high variance. Graphically, our decision boundary will be more jagged.
+When K is small, we are restraining the region of a given prediction and forcing our classifier to be “more blind” to the overall distribution. A small value for K provides the most flexible fit, which will have low bias but high variance. Graphically, our decision boundary will be more jagged.
 
 <img src="/assets/1nearestneigh.png">
 
