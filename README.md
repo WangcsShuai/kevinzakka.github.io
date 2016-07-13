@@ -1,3 +1,3 @@
 # My blog
 
-This is my academic blog and my learning journey as a Machine Learner.
+This is my academic blog, in the style of [Andrej Karpathy's](http://karpathy.github.io/).
