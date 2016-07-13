@@ -76,14 +76,18 @@ When K is small, we are restraining the region of a given prediction and forcing
 
 On the other hand, a higher K averages more voters in each prediction and hence is more resilient to outliers. Larger values of K will have smoother decision boundaries which means lower variance but increased bias.
 
-<img src="/assets/20nearestneigh.png">
+<p align="center">
+	<img src="/assets/20nearestneigh.png">
+</p>
 
 (If you want to learn more about the bias-variance tradeoff, check out [Scott Roe's Blog post](http://scott.fortmann-roe.com/docs/BiasVariance.html). You can mess around with the value of K and watch the decision boundary change!)
 
 ## Exploring KNN in Code
 Without further ado, let's see how KNN can be leveraged in Python for a classification problem. We’re gonna head over to the UC Irvine Machine Learning Repository, an amazing source for a variety of free and interesting data sets.
 
-<img src="/assets/flower.jpg">
+<p align="center">
+	<img src="/assets/flower.jpg">
+</p>
 
 The data set we'll be using is the [Iris Flower Dataset](https://archive.ics.uci.edu/ml/datasets/Iris) (IFD) which was first introduced in 1936 by the famous statistician Ronald Fisher and consists of 50 observations from each of three species of Iris (*Iris setosa, Iris virginica and Iris versicolor*). Four features were measured from each sample: the length and the width of the sepals and petals. Our goal is to train the KNN algorithm to be able to distinguish the species from one another given the measurements of the 4 features.
 
@@ -125,9 +129,13 @@ iris %>%
 
 Note that we've accessed the `iris` dataframe which comes preloaded in R by default.
 
-<img src="/assets/sep_plot.png">
+<p align="center">
+	<img src="/assets/sep_plot.png">
+</p>
 
-<img src="/assets/pet_plot.png">
+<p align="center">
+	<img src="/assets/pet_plot.png">
+</p>
 
 A quick study of the above graphs reveals some strong classification criterion. We observe that setosas have small petals, versicolor have medium sized petals and virginica have the largest petals. Furthermore, setosas seem to have shorter and wider sepals than the other two classes. Pretty interesting right? Without even using an algorithm, we've managed to intuitively construct a classifier that can perform pretty well on the dataset.
 
@@ -181,7 +189,9 @@ Obviously, the best K is the one that corresponds to the lowest test error rate,
 
 An alternative and smarter approach involves estimating the test error rate by holding out a subset of the `training set` from the fitting process. This subset, called the `validation set`, can be used to select the appropriate level of flexibility of our algorithm! There are different validation approaches that are used in practice, and we will be exploring one of the more popular ones called **k-fold cross validation**.
 
-<img src="/assets/k_fold_cv.jpg">
+<p align="center">
+	<img src="/assets/k_fold_cv.jpg">
+</p>
 
 As seen in the image, k-fold cross validation (*the k is totally unrelated to K*) involves randomly dividing the training set into k groups, or folds, of approximately equal size. The first fold is treated as a validation set, and the method is fit on the remaining $$k − 1$$ folds. The misclassification rate is then computed on the observations in the held-out fold. This procedure is repeated k times; each time, a different group of observations is treated as a validation set. This process results in k estimates of the test error which are then averaged out.
 
@@ -223,8 +233,9 @@ plt.xlabel('Number of Neighbors K')
 plt.ylabel('Misclassification Error')
 plt.show()
 ```
-
-<img src="/assets/cv_knn.png">
+<p align="center">
+	<img src="/assets/cv_knn.png">
+</p>
 
 10-fold cross validation tells us that $K = 7$ results in the lowest validation error.
 
