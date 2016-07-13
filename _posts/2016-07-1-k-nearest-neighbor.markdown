@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A Complete Guide to K-Nearest-Neighbors with Applications in Python and R"
-date: 2016-07-11
+date: 2016-07-13
 excerpt: "I'll introduce the intuition and math behind KNN, cover a real-life example, and explore the inner-workings of the algorithm by implementing the code from scratch."
 tags: [KNN, machine learning, classification, neighbours]
 comments: true
