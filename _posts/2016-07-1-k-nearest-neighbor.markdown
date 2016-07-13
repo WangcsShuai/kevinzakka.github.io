@@ -77,9 +77,9 @@ On the other hand, a higher K averages more voters in each prediction and hence 
 (If you want to learn more about the bias-variance tradeoff, check out [Scott Roe's Blog post](http://scott.fortmann-roe.com/docs/BiasVariance.html). You can mess around with the value of K and watch the decision boundary change!)
 
 ## Exploring KNN in Code
-<img src="/assets/flower.jpg">
+Without further ado, let's see how KNN can be leveraged in Python for a classification problem. We’re gonna head over to the UC Irvine Machine Learning Repository, an amazing source for a variety of free and interesting data sets.
 
-Without further ado, let's see how KNN can be leveraged in Python for a classification problem. We’re gonna head over to the UC Irvine Machine Learning Repository, an amazing source for a variety of free and interesting data sets.  
+<img src="/assets/flower.jpg">
 
 The data set we'll be using is the [Iris Flower Dataset](https://archive.ics.uci.edu/ml/datasets/Iris) (IFD) which was first introduced in 1936 by the famous statistician Ronald Fisher and consists of 50 observations from each of three species of Iris (*Iris setosa, Iris virginica and Iris versicolor*). Four features were measured from each sample: the length and the width of the sepals and petals. Our goal is to train the KNN algorithm to be able to distinguish the species from one another given the measurements of the 4 features.
 
@@ -100,7 +100,7 @@ names = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'class']
 df = pd.read_csv('/Users/kevin/Desktop/Blog/iris.data.txt', header=None, names=names)
 df.head()
 ```
-Next, it would be cool if we could examine the data before rushing into classification so that we can have a deeper understanding of the problem at hand. R has some beautiful visualization tools, so we'll be using it to create 2 quick scatter plots of __sepal width vs sepal length__ and __petal width vs petal length__. 
+Next, it would be cool if we could examine the data before rushing into classification so that we can have a deeper understanding of the problem at hand. R has a beautiful visualization tool called `ggvis`, so we'll be using it to create 2 quick scatter plots of __sepal width vs sepal length__ and __petal width vs petal length__. 
 
 ```r
 # loading packages
