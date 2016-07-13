@@ -344,7 +344,7 @@ With that being said, there are many ways in which the KNN algorithm can be impr
 
 - A simple and effective way to remedy skewed class distributions is by implementing **weighed voting**. The class of each of the K neighbors is multiplied by a weight proportional to the inverse of the distance from that point to the given test point. This ensures that nearer neighbors contribute more to the final vote than the more distant ones.
 - **Changing the distance metric** for different applications may help improve the accuracy of the algorithm. (i.e. Hamming distance for text classification)
-- **Rescaling your data** makes the distance metric more meaningful. For instance, given 2 features `height` and `weight` an observation such as $$x = [180, 70]$$ will clearly skew the distance metric in favor of height. One way of doing this is by subtracting the mean and dividing by the standard deviation, something implemented with scikit-learn's `normalize()`.
+- **Rescaling your data** makes the distance metric more meaningful. For instance, given 2 features `height` and `weight`, an observation such as $$x = [180, 70]$$ will clearly skew the distance metric in favor of height. One way of fixing this is by column-wise subtracting the mean and dividing by the standard deviation. Scikit-learn's `normalize()` method can come in handy.
 - **Dimensionality reduction** techniques like PCA should be executed prior to appplying KNN and help make the distance metric more meaningful.
 - **Approximate Nearest Neighbor** techniques such as using *k-d trees* to store the training observations can be leveraged to decrease testing time. Note however that these methods tend to perform poorly in high dimensions (20+). Try using **locality sensitive hashing (LHS)** for higher dimensions.
 
@@ -357,7 +357,7 @@ If you want to practice some more with the algorithm, try and run it on the __Br
 ## References
 
 #### Notes
-- Stanfords *CS231n* notes on KNN. Click [here](http://cs231n.github.io/classification/#nn)
+- Stanfords **CS231n** notes on KNN. Click [here](http://cs231n.github.io/classification/#nn)
 - Wikipedia's KNN page - click [here](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)
 - Introduction to Statistical Learning with Applications in R, Chapters **2** and **3** - click [here](http://www-bcf.usc.edu/~gareth/ISL/)
 - Detailed Introduction to KNN - click [here](https://saravananthirumuruganathan.wordpress.com/2010/05/17/a-detailed-introduction-to-k-nearest-neighbor-knn-algorithm/)
