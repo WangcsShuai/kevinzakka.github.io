@@ -134,7 +134,7 @@ Now, it's time to get our hands wet. We'll be using `scikit-learn` to train a KN
 3. Learn the model
 4. Predict the response
 
-`scikit-learn` requires that the design matrix $X$ and target vector $y$ be numpy arrays so let's oblige. Furthermore, we need to split our data into training and test sets. The following code does just that.
+`scikit-learn` requires that the design matrix $$X$$ and target vector $$y$$ be numpy arrays so let's oblige. Furthermore, we need to split our data into training and test sets. The following code does just that.
 
 ```python
 # loading libraries
@@ -169,13 +169,21 @@ print accuracy_score(y_test, pred)
 ``` 
 
 ## Parameter Tuning with Cross Validation
-Now, let's explore a method that can be used to *tune* the hyperparameter K.
+In this section, we'll explore a method that can be used to *tune* the hyperparameter K.
+
+Obviously, the best K is the one that corresponds to the lowest test error rate, so let's suppose we carry out repeated measurements of the test error for different values of K. Inadvertently, what we are doing is using the `test set` as a `training set`! This means that we are underestimating the true error rate since our model has been forced to fit the test set in the best possible manner. Our model is then incapable of generalizing to newer observations, a process known as **overfitting**. Hence, touching the test set is out of the question and must only be done at the very end of our pipeline.
+
+> Using the test set for hyperparameter tuning can lead to overfitting.
+
+An alternative and smarter approach involves estimating the test error rate by holding out a subset of the `training set` from the fitting process. This subset, called the `validation set`, can be used to select the appropriate level of flexibility of our algorithm! There are different validation approaches that are used in practice, and we will be exploring one of the more popular ones called **k-fold cross validation**.
+
+> cross-validation can be used to estimate the test error associated with a learning method in order to evaluate its performance, or to select the appropriate level of flexibility.
 
 <img src="/assets/k_fold_cv.jpg">
 
-As seen above, k-fold cross validation involves randomly dividing the training set into k groups, or folds, of approximately equal size. The first fold is treated as a validation set, and the method is fit on the remaining k − 1 folds. The error metric (i.e. misclassification rate for classification and mean squared error for regression) is then computed on the observations in the held-out fold. This procedure is repeated k times; each time, a different group of observations is treated as a validation set. This process results in k estimates of the test error which are then averaged out.
+As seen in the image, k-fold cross validation (*the k is totally unrelated to K*) involves randomly dividing the training set into k groups, or folds, of approximately equal size. The first fold is treated as a validation set, and the method is fit on the remaining $$k − 1$$ folds. The misclassification rate is then computed on the observations in the held-out fold. This procedure is repeated k times; each time, a different group of observations is treated as a validation set. This process results in k estimates of the test error which are then averaged out.
 
-Let's go ahead and perform 10-fold cross validation on our dataset using a generated list of odd K's ranging from 1 to 50.
+If that is a bit overwhelming for you, don't worry about it. We're gonna make it clearer by performing a 10-fold cross validation on our dataset using a generated list of odd K's ranging from 1 to 50.
 
 ```python
 # creating odd list of K for KNN
@@ -193,9 +201,10 @@ for k in neighbors:
     scores = cross_val_score(knn, X_train, y_train, cv=10, scoring='accuracy')
     cv_scores.append(scores.mean())
 ```
+Again, scikit learn comes in handy with its `cross_val_score()` function. We specifiy that we are performing 10 folds with the `cv=10` parameter and that our scoring metric should be `accuracy` since we are in a classification setting.
 
-Now, we determine the best K and graph the misclassification error versus the different values of K.
-
+Finally, we plot the misclassification error versus K.
+ 
 ```python
 # changing to misclassification error
 MSE = [1 - x for x in cv_scores]
@@ -213,10 +222,10 @@ plt.show()
 
 <img src="/assets/cv_knn.png">
 
-Our best K turns out to be 7.
+10-fold cross validation tells us that $K = 7$ results in the lowest validation error.
 
 ## Writing our Own KNN from Scratch
-So far, we've studied how KNN works and seen how we can use it for a classification task using scikit-learn's generic pipeline (i.e. input, instantiate train, predict and evaluate). Now, it's time to delve deeper into KNN by trying to code it ourselves from scratch.
+So far, we've studied how KNN works and seen how we can use it for a classification task using scikit-learn's generic pipeline (i.e. input, instantiate, train, predict and evaluate). Now, it's time to delve deeper into KNN by trying to code it ourselves from scratch.
 
 A machine learning algorithm usually consists of 2 main blocks: 
 
@@ -232,7 +241,7 @@ def train(X_train, y_train):
 	return
 ```
 
-Phew, that was hard! Now we need to write the predict method which must do the following: it needs to compute the euclidean distance between the "new" observation and all the data points in the training set. It must then select the K nearest ones and perform a majority vote. It then assigns the corresponding label to the observation. Let's go ahead and write that.
+Gosh, that was hard! Now we need to write the predict method which must do the following: it needs to compute the euclidean distance between the "new" observation and all the data points in the training set. It must then select the K nearest ones and perform a majority vote. It then assigns the corresponding label to the observation. Let's go ahead and write that.
 
 ```python
 def predict(X_train, y_train, x_test, k):
