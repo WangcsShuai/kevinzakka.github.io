@@ -16,3 +16,6 @@ kramdown:
   input: GFM
   auto_ids: true
   syntax_highlighter: rouge
+
+# Google services
+google_analytics: UA-80187637-1
