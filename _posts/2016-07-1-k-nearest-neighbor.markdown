@@ -70,7 +70,9 @@ At this point, you're probably wondering how to pick the variable K and what its
 
 When K is small, we are restraining the region of a given prediction and forcing our classifier to be “more blind” to the overall distribution. A small value for K provides the most flexible fit, which will have low bias but high variance. Graphically, our decision boundary will be more jagged.
 
-<img src="/assets/1nearestneigh.png">
+<div class='fig figcenter fighighlight'>
+	<img src="/assets/1nearestneigh.png">
+</div>
 
 On the other hand, a higher K averages more voters in each prediction and hence is more resilient to outliers. Larger values of K will have smoother decision boundaries which means lower variance but increased bias.
 
