@@ -201,7 +201,7 @@ for k in neighbors:
     scores = cross_val_score(knn, X_train, y_train, cv=10, scoring='accuracy')
     cv_scores.append(scores.mean())
 ```
-Again, scikit learn comes in handy with its `cross_val_score()` function. We specifiy that we are performing 10 folds with the `cv=10` parameter and that our scoring metric should be `accuracy` since we are in a classification setting.
+Again, scikit-learn comes in handy with its `cross_val_score()` method. We specifiy that we are performing 10 folds with the `cv=10` parameter and that our scoring metric should be `accuracy` since we are in a classification setting.
 
 Finally, we plot the misclassification error versus K.
  
