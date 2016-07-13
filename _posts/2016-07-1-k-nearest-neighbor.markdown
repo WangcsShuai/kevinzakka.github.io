@@ -9,7 +9,7 @@ mathjax: true
 ---
 This is an in-depth tutorial designed to introduce you to a simple, yet powerful classification algorithm called K-Nearest-Neighbors (KNN). We will go over the intuition and mathematical detail of the algorithm, apply it to a real-world dataset to see exactly how it works, and gain an intrinsic understanding of its inner-workings by writing it from scratch in code. Finally, we will explore ways in which we can improve the algorithm.
 
-For the full code that appears on this page, visit my [Github Repository](https://github.com/kevinzakka/blog-code/)
+For the full code that appears on this page, visit my [Github Repository](https://github.com/kevinzakka/blog-code/).
 
 ## Table of Contents
 
@@ -344,7 +344,7 @@ With that being said, there are many ways in which the KNN algorithm can be impr
 
 - A simple and effective way to remedy skewed class distributions is by implementing **weighed voting**. The class of each of the K neighbors is multiplied by a weight proportional to the inverse of the distance from that point to the given test point. This ensures that nearer neighbors contribute more to the final vote than the more distant ones.
 - **Changing the distance metric** for different applications may help improve the accuracy of the algorithm. (i.e. Hamming distance for text classification)
-- **Rescaling your data** makes the distance metric more meaningful. For instance, given 2 features `height` and `weight` an observation such as $x = [180, 70]$ will clearly skew the distance metric in favor of height. One way of doing this is by subtracting the mean and dividing by the standard deviation, something implemented with scikit-learn's `normalize()`.
+- **Rescaling your data** makes the distance metric more meaningful. For instance, given 2 features `height` and `weight` an observation such as $$x = [180, 70]$$ will clearly skew the distance metric in favor of height. One way of doing this is by subtracting the mean and dividing by the standard deviation, something implemented with scikit-learn's `normalize()`.
 - **Dimensionality reduction** techniques like PCA should be executed prior to appplying KNN and help make the distance metric more meaningful.
 - **Approximate Nearest Neighbor** techniques such as using *k-d trees* to store the training observations can be leveraged to decrease testing time. Note however that these methods tend to perform poorly in high dimensions (20+). Try using **locality sensitive hashing (LHS)** for higher dimensions.
 
