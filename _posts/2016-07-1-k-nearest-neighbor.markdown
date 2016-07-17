@@ -113,17 +113,18 @@ Next, it would be cool if we could plot the data before rushing into classificat
 ```r
 # ============================== R code ==============================
 # loading packages
-library(ggvis)
+library(ggplot2)
+library(magrittr)
 
-# sepal width vs sepal length
-iris %>% 
-  ggvis(~Sepal.Length, ~Sepal.Width, fill = ~Species) %>%
-  layer_points()
-  
-# petal width vs petal length
+# sepal width vs. sepal length
 iris %>%
-  ggvis(~Petal.Length, ~Petal.Width, fill = ~Species) %>%
-  layer_points()
+  ggplot(aes(x=Sepal.Length, y=Sepal.Width, color=Species)) +
+  geom_point()
+
+# petal width vs. petal length
+iris %>%
+  ggplot(aes(x=Petal.Length, y=Petal.Width, color=Species)) +
+  geom_point()
 # =====================================================================
 ```
 
