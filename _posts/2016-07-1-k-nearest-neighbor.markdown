@@ -156,7 +156,7 @@ from sklearn.cross_validation import train_test_split
 
 # create design matrix X and target vector y
 X = np.array(df.ix[:, 0:4]) 	# end index is exclusive
-y = np.array(df['class']) 		# another way of indexing a pandas df
+y = np.array(df['class']) 	# another way of indexing a pandas df
 
 # split into train and test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
