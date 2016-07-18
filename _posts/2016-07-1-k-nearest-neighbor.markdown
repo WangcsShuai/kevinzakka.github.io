@@ -108,7 +108,7 @@ df.head()
 ```
 It's always a good idea to `df.head()` to see how the first few rows of the data frame look like. Also, note that you should replace `'path/iris.data.txt'` with that of the directory where you saved the data set.
 
-Next, it would be cool if we could plot the data before rushing into classification so that we can have a deeper understanding of the problem at hand. R has a beautiful visualization tool called `ggvis` that we will use to create 2 quick scatter plots of __sepal width vs sepal length__ and __petal width vs petal length__.  
+Next, it would be cool if we could plot the data before rushing into classification so that we can have a deeper understanding of the problem at hand. R has a beautiful visualization tool called `ggplot2` that we will use to create 2 quick scatter plots of __sepal width vs sepal length__ and __petal width vs petal length__.  
 
 ```r
 # ============================== R code ==============================
