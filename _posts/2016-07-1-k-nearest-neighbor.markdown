@@ -238,7 +238,7 @@ plt.show()
 	<img src="/assets/cv_knn.png">
 </p>
 
-10-fold cross validation tells us that $K = 7$ results in the lowest validation error.
+10-fold cross validation tells us that $$K = 7$$ results in the lowest validation error.
 
 ## Writing our Own KNN from Scratch
 So far, we've studied how KNN works and seen how we can use it for a classification task using scikit-learn's generic pipeline (i.e. input, instantiate, train, predict and evaluate). Now, it's time to delve deeper into KNN by trying to code it ourselves from scratch.
