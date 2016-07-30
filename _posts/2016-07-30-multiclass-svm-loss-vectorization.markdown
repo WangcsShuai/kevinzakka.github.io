@@ -205,7 +205,7 @@ def L(X, y, W):
 	scores = W.dot(X)
 ```
 
-This is super easy. All we need to do is replace `x` with `X`. The resulting matrix `scores` stores the scores for each image as columns. Let's perform a sanity check.
+This is super easy. All we did was replace `x` with `X`. The resulting matrix `scores` stores the scores for each image as columns. Let's perform a sanity check.
 
 ```python
 x = X[:, 0]
@@ -231,7 +231,6 @@ The difficulty here lies in grabbing the correct class scores. The rest is a pie
 ```python
 # grab scores of correct classes
 correct_classes = scores[y, np.arange(N)]
-
 ```
 
 This type of indexing lets us select one element from each column of `scores` using the indices in our vector `y`. Super cool right?
@@ -247,7 +246,6 @@ vectorizedSquash = np.vectorize(squash, otypes=[np.float])
 
 # compute margins element-wise
 margins = vectorizedSquash(scores - correct_classes, delta)
-
 ```
 
 Almost done! Remember that we need to ignore the losses on the correct classes. So let's reuse the array indexing and set those to 0 with `margins[y, np.arange(2)] = 0`. All we have left is to sum the losses and average them out.
@@ -340,5 +338,5 @@ In this blog post, we learned about the advantages of vectorization specifically
 
 This post is meant to help people taking CS231n. You can:
 
-- visit the course syllabus: click [here](http://cs231n.github.io/)
-- read the section on SVM and Softmax Loss - click [here](http://cs231n.github.io/linear-classify/)
+- Visit the course syllabus: click [here](http://cs231n.github.io/)
+- Read the section on SVM and Softmax Loss - click [here](http://cs231n.github.io/linear-classify/)
