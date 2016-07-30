@@ -75,7 +75,9 @@ I'll quickly summarize the key elements of the loss function to refresh your mem
 $$
 L_{hinge} =  \frac{1}{N} \sum_i L_i
 $$
+
 where
+
 $$
 L_i = \sum_{j\neq y_i} \max(0, s_j - s_{y_i} + \Delta)
 $$
