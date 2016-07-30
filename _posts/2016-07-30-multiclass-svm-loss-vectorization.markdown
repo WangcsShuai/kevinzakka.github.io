@@ -134,12 +134,12 @@ This is the unvectorized function written by the course creators. I've altered t
 ```python
 def L_i(x, y, W):
 	"""
-		  Unvectorized version. Compute the multiclass SVM loss for a single
-		  example (x,y).
-		  - x is a column vector representing an image with an appended bias
-		  	dimension (5x1).
-		  - y is an integer giving index of correct class (between 0 and 2)
-		  - W is the weight matrix with the appended bias column (3x5)
+	Unvectorized version. Compute the multiclass SVM loss for a single
+	example (x,y).
+	- x is a column vector representing an image with an appended bias
+	dimension (5x1).
+	- y is an integer giving index of correct class (between 0 and 2).
+	- W is the weight matrix with the appended bias column (3x5).
 	"""
 	delta = 1.0 			
 	scores = W.dot(x)
@@ -191,10 +191,10 @@ We're gonna do exactly the same thing with the vectorized version. Let's start w
 ```python
 def L(X, y, W):
 	"""
-		Fully-vectorized implementation.
-		- X holds all the training examples as columns.
-		- y is array of integers specifying correct class.
-	  	- W holds the weights.
+	Fully-vectorized implementation.
+	- X holds all the training examples as columns.
+	- y is array of integers specifying correct class.
+  	- W holds the weights.
 	"""
 	# grab number of images
 	N = X.shape[1]
@@ -266,10 +266,10 @@ def squash(x, delta):
 	
 def L(X, y, W):
 	"""
-		Fully-vectorized implementation
-		- X holds all the training examples as columns
-		- y is array of integers specifying correct class
- 		- W holds the weights
+	Fully-vectorized implementation
+	- X holds all the training examples as columns
+	- y is array of integers specifying correct class
+ 	- W holds the weights
 	"""
 	# grab number of images
 	N = X.shape[1]
