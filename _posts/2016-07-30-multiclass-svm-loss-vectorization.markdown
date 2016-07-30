@@ -12,7 +12,7 @@ In this blog post, we're going to vectorize the **Multiclass Support Vector Mach
 
 ## Introduction
 
-Let's start by motivating the concept of vectorization. In computer representation, an image is basically a 3D grid or array of pixels. In colored images, each pixel is a number which consists of 8 *bits*, meaning it can describe  $2^8 = 256$ colors, or levels of gray tones. 
+Let's start by motivating the concept of vectorization. In computer representation, an image is basically a 3D grid or array of pixels. In colored images, each pixel is a number which consists of 8 *bits*, meaning it can describe  $$2^8 = 256$$ colors, or levels of gray tones. 
 
 The first dimension of an image represents its **width**, the second dimension represents its **height**, and the third dimension represents the **color channels** used.
 
@@ -47,24 +47,24 @@ $$
 L_i = \sum_{j\neq y_i} \max(0, s_j - s_{y_i} + \Delta)
 $$
 
-Remember that $s_j \\$ represents the vector of class scores for a given image $x_i$. $\Delta$ is our threshold which can safely be set to $1$.
+Remember that $$s_j \\$$ represents the vector of class scores for a given image $$x_i$$. $$\Delta$$ is our threshold which can safely be set to $$1$$.
 
 ## Example Code
 
-To illustrate our thought process, we'll be using small, random $X$, $W$, $y$ and $b$ matrices. Suppose we have: 
+To illustrate our thought process, we'll be using small, random $$X$$, $$W$$, $$y$$ and $$b$$ matrices. Suppose we have: 
 
 - 3 possible classes: 0, 1, 2 (or dog, cat, horse)
 - 2 images consisting of 4 pixels each.
 
-We thus have a matrix $X$ of 4 rows and 2 columns and a matrix $W$ of 3 rows (3 classes) and 4 columns.
+We thus have a matrix $$X$$ of 4 rows and 2 columns and a matrix $$W$$ of 3 rows (3 classes) and 4 columns.
 
-Using the bias trick mentioned in the course, we introduce a new dimension of $1$'s to $X$ and add the bias column to the weight matrix $W$. This will simplify our work.
+Using the bias trick mentioned in the course, we introduce a new dimension of $$1$$'s to $$X$$ and add the bias column to the weight matrix $$W$$. This will simplify our work.
 
 In conclusion, we have: 
 
-- $dim(X) = 5 \times 2$ 
-- $dim(W) = 3 \times 5$
-- $dim(y) = 2 \times 1$
+- $$dim(X) = 5 \times 2$$ 
+- $$dim(W) = 3 \times 5$$
+- $$dim(y) = 2 \times 1$$
 
 
 <p align="center">
