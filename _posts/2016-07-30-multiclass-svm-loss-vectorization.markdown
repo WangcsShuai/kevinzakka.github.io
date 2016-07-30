@@ -156,7 +156,13 @@ def L_i(x, y, W):
 	return loss_i
 ```
 
-The above function corresponds to the loss associated to a single image $$x_i$$. Remember that we need to sum over the incorrect class scores, and calculate the associated margin $$\max{(0, s_j - s_{y_i} + \Delta )} \\$$. 
+The above function corresponds to the loss associated to a single image $$x_i$$. Remember that we need to sum over the incorrect class scores, and calculate the associated margin $$\max{(0, s_j - s_{y_i} + \Delta )} \\$$.
+
+Here's a picture that describes what the loss function is doing.
+
+<p align="center">
+	<img src="/assets/dot_product.png">
+</p>
 
 Thus we start by calculating $$s_j$$. This is done by computing the dot product between the weight matrix $$W$$ and our image $$x$$, or `scores = W.dot(x)`. Next, we need to determine the score of the correct class. We have $$y$$, so let's just index into the `scores` matrix we just calculated and grab $$s_{y_i}$$. Now, all we need to do is loop over the incorrect classes. `if j == y` makes sure we skip the loss accumulation operation in the loop.
 
