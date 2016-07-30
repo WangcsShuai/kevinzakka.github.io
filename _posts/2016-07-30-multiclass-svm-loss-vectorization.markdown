@@ -2,7 +2,7 @@
 layout: post
 title: "Vectorizing the Multi-Class SVM Loss"
 date: 2016-07-30
-excerpt: ""
+excerpt: "I'll explain how to vectorize the multiclass or hinge loss and provide example code."
 tags: [vectorization, machine learning, classification, cs231n, visual, recognition]
 comments: true
 mathjax: true
