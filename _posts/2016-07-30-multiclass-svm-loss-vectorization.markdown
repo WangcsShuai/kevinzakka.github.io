@@ -34,11 +34,11 @@ The first dimension of an image represents its **width**, the second dimension r
 	<img src="/assets/pixels.png">
 </p>
 
-For example, in the landscape image above, the dimensions are 743 pixels wide, 364 pixels tall, and 3 color channels used. This means we have 743 x 364 x 3 = 811,356 pixels we're actually dealing with! 
+For example, in the landscape image above, the dimensions are 743 pixels wide, 364 pixels tall, and 3 color channels (RGB) used. This means we have 743 x 364 x 3 = 811,356 pixels we're actually dealing with! 
 
 You might be thinking that this is a piece of cake computation for any decent computer today, but remember, we're only dealing with 1 image here. If we have say 50,000 training images like the one above, we'd have, after stretching out each image into a 811,356 x 1 column vector, a 811,356 x 50,000 design matrix $$X$$.
   
-It should come at no surprise then that calculations involving huge, high-dimensional arrays are expensive both time and memory wise. Vectorizing those calculations comes in handy because not only does it speed up your code but it usually looks much cleaner which makes it easier to read and debug later on.
+It should come at no surprise then that calculations involving huge, high-dimensional arrays are expensive both time and memory wise. Vectorizing those calculations comes in handy because not only does it speed up your code but it usually looks much cleaner making it easier to read and debug later on.
 
 Consider the following vector addition written first with `for` loops and then in `vector` form.
 
@@ -93,7 +93,7 @@ As the famous adage says, **code is worth a thousand words** (or was it images ð
 - 2 images consisting of 4 pixels each.
 - 3 possible classes: dog, cat, and horse
 
-We thus have a matrix $$X$$ 4 rows long and 2 columns wide and a matrix $$W$$ 3 rows long (3 classes) and 4 columns wide.
+We thus have a matrix $$X$$, 4 rows long and 2 columns wide and a matrix $$W$$, 3 rows long (3 classes) and 4 columns wide.
 
 Using the **bias trick** mentioned in the course, we introduce a new dimension of $$1$$'s to $$X$$ and add the bias column to the weight matrix $$W$$ (this will make it so we don't have to deal with an extra bias matrix). In conclusion, we have: 
 
@@ -158,7 +158,7 @@ def L_i(x, y, W):
 
 The above function corresponds to the loss associated to a single image $$x_i$$. Remember that we need to sum over the incorrect class scores, and calculate the associated margin $$\max{(0, s_j - s_{y_i} + \Delta )} \\$$. 
 
-Thus we start by calculating $$s_j$$. This is done by computing the dot product between the weight matrix $$W$$ and our image $$x$$, or `scores = W.dot(x)`. Now, we need to determine the score of the correct class. We have $$y$$, so let's just index into the `scores` matrix we just calculated ans grab $$s_{y_i}$$. Now all we need to do is loop over the incorrect classes. `if j == y` makes sure we skip the loss accumulation operation in the loop.
+Thus we start by calculating $$s_j$$. This is done by computing the dot product between the weight matrix $$W$$ and our image $$x$$, or `scores = W.dot(x)`. Next, we need to determine the score of the correct class. We have $$y$$, so let's just index into the `scores` matrix we just calculated and grab $$s_{y_i}$$. Now, all we need to do is loop over the incorrect classes. `if j == y` makes sure we skip the loss accumulation operation in the loop.
 
 Our final result is `loss_i` which corresponds to the loss for just 1 image. We need to do this for both images in our dataset and compute the average loss. The code would go something like this:
 
@@ -235,7 +235,7 @@ correct_classes = scores[y, np.arange(N)]
 
 This type of indexing lets us select one element from each column of `scores` using the indices in our vector `y`. Super cool right?
 
-Now we need to subtract, add and squash the scores. Doing this requires that we vectorize a squash function that we will write using numpy's `vectorize` method. This just lets us apply a function element-wise on a matrix.
+Now we need to subtract, add and squash the scores. Doing this requires that we vectorize a squash function that we will write using numpy's `vectorize` method. Vectorizing in numpy makes it so that a function can be applied element-wise on a matrix.
 
 ```python
 def squash(x, delta):
@@ -334,9 +334,9 @@ A whooping 561% improvement! Give yourself another pat on the back.
 
 ## Summary
 
-In this blog post, we learned about the advantages of vectorization specifically in visual recognition applications where dealing with very high-dimensional arrays is very common. We went from a double for-loop implementation to a fully vectorized one with some example code to illustrate eaach step.
+In this blog post, we learned about the advantages of vectorization specifically in visual recognition applications where dealing with very high-dimensional arrays is very common. We went from a double for-loop implementation to a fully vectorized one with some example code to illustrate each step.
 
-This post is meant to help people taking CS231n. You can:
+As mentioned previously, this post is meant to help people taking CS231n. You can:
 
 - Visit the course syllabus: click [here](http://cs231n.github.io/)
 - Read the section on SVM and Softmax Loss - click [here](http://cs231n.github.io/linear-classify/)
