@@ -62,15 +62,11 @@ Using the bias trick mentioned in the course, we introduce a new dimension of $$
 
 In conclusion, we have: 
 
-- $$dim(X) = 5 \times 2$$ 
-- $$dim(W) = 3 \times 5$$
-- $$dim(y) = 2 \times 1$$
+- \( dim(X) = 5 \times 2\) 
+- \( dim(W) = 3 \times 5 \)
+- \( dim(y) = 2 \times 1 \)
 
-
-<p align="center">
-	<img src="/assets/svmvssoftmax.png">
-</p>
-
+<img src="/assets/svmvssoftmax.png">
 
 Go ahead and copy paste the following code into Sublime:
 
