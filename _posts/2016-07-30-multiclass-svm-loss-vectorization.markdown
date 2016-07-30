@@ -68,7 +68,7 @@ In conclusion, we have:
 
 
 <p align="center">
-	<img src="/assets/svmssoftmax.png">
+	<img src="/assets/svmvssoftmax.png">
 </p>
 
 
