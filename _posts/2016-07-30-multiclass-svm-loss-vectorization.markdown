@@ -314,14 +314,14 @@ Adding to the above code:
 import time
 
 start_time = time.time()
-print("loss: ", L(X, y, W))
+print('loss: {} '.format(L(X, y, W))
 time1 = time.time() - start_time
 print('Vectorized takes: {}'.format(time1))
 
 start_time = time.time()
 for i in range(X.shape[1]):
 	losses += L_i(X[:, i], y[i], W)
-print("loss: ", losses / X.shape[1])
+print('loss: '.format(losses / X.shape[1]))
 time2 = time.time() - start_time
 print('Non-vectorized takes: {}'.format(time2))
 
