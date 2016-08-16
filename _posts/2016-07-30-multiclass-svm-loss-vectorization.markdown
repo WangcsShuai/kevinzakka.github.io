@@ -253,7 +253,7 @@ Almost done! Remember that we need to ignore the losses on the correct classes. 
 ```python
 # ignore the y-th position and only consider margin on max wrong class
 # we could also leave margins as is and subtract N from the loss
-# (loss = np.sum(margins) - num_train)
+# (loss = np.sum(margins) - N)
 margins[y, np.arange(2)] = 0
 
 # compute loss column-wise
