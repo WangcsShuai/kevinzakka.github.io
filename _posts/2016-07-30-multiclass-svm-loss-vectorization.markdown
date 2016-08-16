@@ -248,13 +248,13 @@ Now we need to subtract, add and squash the scores. This is a simple one-liner.
 margins = np.maximum(0, scores - correct_classes + delta)
 ```
 
-Almost done! Remember that we need to ignore the losses on the correct classes. So let's reuse the array indexing and set those to 0 with `margins[y, np.arange(2)] = 0`. All we have left is to sum the losses and average them out.
+Almost done! Remember that we need to ignore the losses on the correct classes. So let's reuse the array indexing and set those to 0 with `margins[y, np.arange(N)] = 0`. All we have left is to sum the losses and average them out.
 
 ```python
 # ignore the y-th position and only consider margin on max wrong class
 # we could also leave margins as is and subtract N from the loss
 # (loss = np.sum(margins) - N)
-margins[y, np.arange(2)] = 0
+margins[y, np.arange(N)] = 0
 
 # compute loss column-wise
 losses = np.sum(margins, axis=0)
@@ -288,7 +288,7 @@ def L(X, y, W):
 	margins = np.maximum(0, scores - correct_classes + delta)
 
 	# ignore the y-th position and only consider margin on max wrong class
-	margins[y, np.arange(2)] = 0
+	margins[y, np.arange(N)] = 0
 
 	# compute loss column-wise
 	losses = np.sum(margins, axis=0)
