@@ -241,22 +241,21 @@ correct_classes = scores[y, np.arange(N)]
 
 This type of indexing lets us select one element from each column of `scores` using the indices in our vector `y`. Super cool right?
 
-Now we need to subtract, add and squash the scores. Doing this requires that we vectorize a squash function that we will write using numpy's `vectorize` method. Vectorizing in numpy makes it so that a function can be applied element-wise on a matrix.
+Now we need to subtract, add and squash the scores. This is a simple one-liner.
 
 ```python
-def squash(x, delta):
-	return np.maximum(0, x + delta)
-	
-# vectorize squash function
-vectorizedSquash = np.vectorize(squash, otypes=[np.float])
-
-# compute margins element-wise
-margins = vectorizedSquash(scores - correct_classes, delta)
+# compute margins
+margins = np.maximum(0, scores - correct_classes + delta)
 ```
 
 Almost done! Remember that we need to ignore the losses on the correct classes. So let's reuse the array indexing and set those to 0 with `margins[y, np.arange(2)] = 0`. All we have left is to sum the losses and average them out.
 
 ```python
+# ignore the y-th position and only consider margin on max wrong class
+# we could also leave margins as is and subtract N from the loss
+# (loss = np.sum(margins) - num_train)
+margins[y, np.arange(2)] = 0
+
 # compute loss column-wise
 losses = np.sum(margins, axis=0)
 	
@@ -267,9 +266,6 @@ return (np.sum(losses) / N)
 Give yourself a pat on the back! We've done it. We've fully vectorized the code of the multiclass SVM loss. The bird's eye view of the function is posted below:
 
 ```python
-def squash(x, delta):
-	return np.maximum(0, x + delta)
-	
 def L(X, y, W):
 	"""
 	Fully-vectorized implementation
@@ -288,19 +284,19 @@ def L(X, y, W):
 	# grab scores of correct classes
 	correct_classes = scores[y, np.arange(N)]
 	
-	# vectorize squash function
-	vectorizedSquash = np.vectorize(squash, otypes=[np.float])
-	
-	# compute margins element-wise
-	margins = vectorizedSquash(scores - correct_classes, delta)
-	
+	# compute margins
+	margins = np.maximum(0, scores - correct_classes + delta)
+
 	# ignore the y-th position and only consider margin on max wrong class
 	margins[y, np.arange(2)] = 0
-	
+
 	# compute loss column-wise
 	losses = np.sum(margins, axis=0)
-	# return average loss
-	return (np.sum(losses) / N)
+	
+	# average out the loss
+	loss = np.sum(losses) / N
+	
+	return loss
 ```
 
 <a name='comp'></a>
