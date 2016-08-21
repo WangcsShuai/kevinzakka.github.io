@@ -13,4 +13,4 @@ I am currently at Columbia University for the summer, taking a Machine Learning 
 
 My future goals include getting comfortable with Deep and Reinforced Learning and their applications to visual recognition. To that end, I intend to study Michael Nielsen's [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/) and Stanford's [CS 231n: CNN for Visual Recognition](http://cs231n.github.io/).
 
-In my free time, I like to blog, [tweet](http://www.twitter.com/kevin_zakka) and take pictures. I'm also a huge fan of tennis, play badminton and enjoy honing my classical guitar skills.
+In my free time, I like to swim and play tennis.
