@@ -2,7 +2,7 @@
 layout: post
 title: "Deriving the Gradient for the Backward Pass of Batch Normalization"
 date: 2016-09-14
-excerpt: "Deriving an expression for the gradient in Batch Normalization."
+excerpt: "I'll work out an expression for the gradient of the batch norm layer in detailed steps and provide example code."
 tags: [batch normalization, gradient, chain rule, cs231n]
 comments: true
 mathjax: true
