@@ -87,9 +87,13 @@ $$
 
 Up to now, things are relatively simple and we've already done 2/3 of the variables. We can't compute the gradient w.r.t $$x$$ just yet though. Moving on to $$\hat{x}$$:
 
+--
+ 
 $$
 \begin{eqnarray}
 \frac{\partial f}{\partial \hat{x}} &=& \frac{\partial f}{\partial y_i} \cdot \frac{\partial y_i}{\partial \hat{x}} \qquad \\
 \frac{\partial f}{\partial \hat{x}} &=& \frac{\partial f}{\partial y_i} \cdot \gamma
 \end{eqnarray}
 $$
+
+--
