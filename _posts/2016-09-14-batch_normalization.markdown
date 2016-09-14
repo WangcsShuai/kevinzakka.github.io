@@ -87,7 +87,7 @@ $$
 
 Up to now, things are relatively simple and we've already done 2/3 of the variables. We can't compute the gradient w.r.t $$x$$ just yet though. Moving on to $$\hat{x}$$:
 
---
+---
  
 $$
 \begin{eqnarray}
@@ -96,4 +96,4 @@ $$
 \end{eqnarray}
 $$
 
---
+---
