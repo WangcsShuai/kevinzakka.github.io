@@ -214,7 +214,9 @@ $$
 \color{green}{\frac{\partial f}{\partial x} = \bigg(\frac{\partial f}{\partial \hat{x}_i} \cdot \dfrac{1}{\sqrt{\sigma^2 + \epsilon}}\bigg) + \bigg(\frac{\partial f}{\partial \mu} \cdot \dfrac{1}{m}\bigg) + \bigg(\frac{\partial f}{\partial \sigma^2} \cdot \dfrac{2(x_i - \mu)}{m}\bigg)}
 $$
 
-where $\boxed{\dfrac{\partial f}{\partial \hat{x}_i} = \dfrac{\partial f}{\partial y_i} \cdot \gamma}$, $\boxed{\dfrac{\partial f}{\partial \mu} = \bigg(\sum\limits_{i=1}^m  \dfrac{\partial f}{\partial \hat{x}_i} \cdot \dfrac{-1}{\sqrt{\sigma^2 + \epsilon}} \bigg) + \bigg( \dfrac{\partial f}{\partial \sigma^2} \cdot \sum\limits_{i=1}^m -2(x_i - \mu)   \bigg)}$ and $\boxed{\dfrac{\partial \hat{x}}{\partial \sigma^2} = -0.5 \sum\limits_{i=1}^m (x_i - \mu) \cdot (\sqrt{\sigma^2 + \epsilon})^{-1.5}}$. 
+where $\boxed{\dfrac{\partial f}{\partial \hat{x}_i} = \dfrac{\partial f}{\partial y_i} \cdot \gamma}$, $\boxed{\dfrac{\partial f}{\partial \mu} = \bigg(\sum\limits_{i=1}^m \dfrac{\partial f}{\partial \hat{x}_i} \cdot \dfrac{-1}{\sqrt{\sigma^2 + \epsilon}} \bigg) + \bigg( \dfrac{\partial f}{\partial \sigma^2} \cdot \sum\limits_{i=1}^m -2(x_i - \mu)   \bigg)}$ and $\boxed{\dfrac{\partial \hat{x}}{\partial \sigma^2} = -0.5 \sum\limits_{i=1}^m (x_i - \mu) \cdot (\sqrt{\sigma^2 + \epsilon})^{-1.5}}$. 
+
+$\boxed{x = 1}$
 
 ### Python Implementation
 
