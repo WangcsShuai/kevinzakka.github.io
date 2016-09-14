@@ -74,7 +74,7 @@ Let's compute $$ \dfrac{\partial f}{\partial y_i} $$. It actually turns out we d
  <img src="\assets\batch_norm\table2.png" width="380">
 </p>
 
-Let's work on cell 2 now. We note that $$y$$ is a function of three variables, so let's compute the gradient with respect to those each one.
+Let's work on cell 2 now. We note that $$y$$ is a function of three variables, so let's compute the gradient with respect to each one.
 
 ---
 
@@ -112,7 +112,7 @@ $$
 
 ---
 
-Up to now, things are relatively simple and we've already done 2/3 of the work. We can't compute the gradient with respect to $$x_i$$ just yet though.
+Up to now, things are relatively simple and we've already done 2/3 of the work. We **can't** compute the gradient with respect to $$x_i$$ just yet though.
 
 #### Cell 3
 
