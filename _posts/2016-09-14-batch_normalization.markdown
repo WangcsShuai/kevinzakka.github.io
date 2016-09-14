@@ -114,7 +114,7 @@ $$
 
 ---
 
-Up to now, things are relatively simple and we've already done 2/3 of the work. We can't compute the gradient w.r.t $$x_i$$ just yet though.
+Up to now, things are relatively simple and we've already done 2/3 of the work. We can't compute the gradient with respect to $$x_i$$ just yet though.
 
 #### Cell 3
 
@@ -124,7 +124,7 @@ Up to now, things are relatively simple and we've already done 2/3 of the work. 
 
 ---
 
-We start with $$\mu$$ and note that $$\sigma^2$$ is a function of $$\mu$$, therefore we need to add its contribution to the partial - (note that I've highlighted the missing partials in red): 
+We start with $$\mu$$ and notice that $$\sigma^2$$ is a function of $$\mu$$, therefore we need to add its contribution to the partial - (I've highlighted the missing partials in red): 
 
 <p align="center">
  <img src="\assets\batch_norm\eq2.png" width="380">
@@ -136,14 +136,15 @@ From
 
 $$\hat{x}_i = \frac{(x_i - \mu)}{\sqrt{\sigma^2 + \epsilon}}$$
 
-We note that
- $$\boxed{\dfrac{\partial \hat{x}_i}{\partial \mu} = \sum\limits_{i=1}^m \frac{1}{\sqrt{\sigma^2 + \epsilon}} \cdot (-1)}$$
+we compute:
+
+$$\boxed{\dfrac{\partial \hat{x}_i}{\partial \mu} = \sum\limits_{i=1}^m \frac{1}{\sqrt{\sigma^2 + \epsilon}} \cdot (-1)}$$
 
 and from
 
 $$\sigma^2 = \frac{1}{m} \sum\limits_{i=1}^m (x_i - \mu)^2$$
 
-we calculate
+we calculate:
 
 $$\boxed{\dfrac{\partial \sigma^2}{\partial \mu} = \frac{1}{m} \sum\limits_{i=1}^m 2 \cdot (x_i - \mu)\cdot (-1)}$$
 
