@@ -8,8 +8,6 @@ comments: true
 mathjax: true
 ---
 
-## Deriving the Gradient for the Backward Pass of Batch Normalization
-
 I recently sat down to work on assignment 2 of Stanford's [CS231n](http://cs231n.github.io/assignments2016/assignment2/). It's lengthy and definitely a step up from the first assignment, but the insight you gain is tremendous. 
 
 Anyway, at one point in the assignment, we were tasked with implementing a Batch Normalization layer in our fully-connected net which required writing a forward and backward pass.
