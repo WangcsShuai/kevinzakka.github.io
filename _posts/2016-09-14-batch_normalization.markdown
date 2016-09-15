@@ -255,6 +255,6 @@ def batchnorm_backward(dout, cache):
 
 ### Conclusion
 
-In this blog post, we learned how to use the chain rule in a staged manner to derive the expression for the gradient of the batch norm layer. We also implemented it in Python using the code from CS231n. If you're interested in the staged computation method, head over to [Kratzert's nicely written post](https://kevinzakka.github.io/2016/09/14/batch_normalization/).
+In this blog post, we learned how to use the chain rule in a staged manner to derive the expression for the gradient of the batch norm layer. We also implemented it in Python using the code from CS231n. If you're interested in the staged computation method, head over to [Kratzert's nicely written post](https://kratzert.github.io/2016/02/12/understanding-the-gradient-flow-through-the-batch-normalization-layer.html).
 
 Cheers!
