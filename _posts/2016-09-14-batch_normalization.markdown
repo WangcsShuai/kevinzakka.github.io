@@ -219,12 +219,12 @@ $$
 $$ 
 
 $$
-\boxed{\dfrac{\partial f}{\partial \mu} = \bigg(\sum\limits_{i=1}^m \dfrac{\partial f}{\partial \hat{x}_i} \cdot \dfrac{-1}{\sqrt{\sigma^2 + \epsilon}} \bigg) + \bigg( \dfrac{\partial f}{\partial \sigma^2} \cdot \sum\limits_{i=1}^m -2(x_i - \mu)   \bigg)}
-$$
-
-$$
 \boxed{\dfrac{\partial \hat{x}}{\partial \sigma^2} = -0.5 \sum\limits_{i=1}^m (x_i - \mu) \cdot (\sqrt{\sigma^2 + \epsilon})^{-1.5}}
 $$ 
+
+$$
+\boxed{\dfrac{\partial f}{\partial \mu} = \bigg(\sum\limits_{i=1}^m \dfrac{\partial f}{\partial \hat{x}_i} \cdot \dfrac{-1}{\sqrt{\sigma^2 + \epsilon}} \bigg) + \bigg( \dfrac{\partial f}{\partial \sigma^2} \cdot \sum\limits_{i=1}^m -2(x_i - \mu)   \bigg)}
+$$
 
 ### Python Implementation
 
