@@ -178,6 +178,7 @@ $$
 $$
 
 You'll notice we've added a summation in $$\dfrac{\partial \hat{x}_i}{\partial \mu}$$ and that is so that the final dimensions add up.
+
 ---
 
 We finally arrive at the last variable $$x$$. Again adding the contributions from any parameter containing $$x$$ we obtain:
