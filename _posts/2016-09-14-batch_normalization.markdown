@@ -136,7 +136,7 @@ $$\hat{x}_i = \frac{(x_i - \mu)}{\sqrt{\sigma^2 + \epsilon}}$$
 
 we compute:
 
-$$\boxed{\dfrac{\partial \hat{x}_i}{\partial \mu} = \sum\limits_{i=1}^m \frac{1}{\sqrt{\sigma^2 + \epsilon}} \cdot (-1)}$$
+$$\boxed{\dfrac{\partial \hat{x}_i}{\partial \mu} = \frac{1}{\sqrt{\sigma^2 + \epsilon}} \cdot (-1)}$$
 
 and from
 
@@ -177,6 +177,7 @@ $$
 \boxed{\frac{\partial f}{\partial \mu} = \bigg(\sum\limits_{i=1}^m  \frac{\partial f}{\partial \hat{x}_i} \cdot \frac{-1}{\sqrt{\sigma^2 + \epsilon}} \bigg) + \bigg( \frac{\partial f}{\partial \sigma^2} \cdot \sum\limits_{i=1}^m -2(x_i - \mu)   \bigg)}
 $$
 
+You'll notice we've added a summation in $$\dfrac{\partial \hat{x}_i}{\partial \mu}$$ and that is so that the final dimensions add up.
 ---
 
 We finally arrive at the last variable $$x$$. Again adding the contributions from any parameter containing $$x$$ we obtain:
