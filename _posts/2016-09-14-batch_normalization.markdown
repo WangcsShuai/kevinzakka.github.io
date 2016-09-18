@@ -174,10 +174,17 @@ $$
 With all that out of the way, let's plug everything back in our previous partial!
 
 $$
-\boxed{\frac{\partial f}{\partial \mu} = \bigg(\sum\limits_{i=1}^m  \frac{\partial f}{\partial \hat{x}_i} \cdot \frac{-1}{\sqrt{\sigma^2 + \epsilon}} \bigg) + \bigg( \frac{\partial f}{\partial \sigma^2} \cdot \sum\limits_{i=1}^m -2(x_i - \mu)   \bigg)}
+\begin{eqnarray}
+\frac{\partial f}{\partial \mu} &=& \bigg(\sum\limits_{i=1}^m  \frac{\partial f}{\partial \hat{x}_i} \cdot \frac{-1}{\sqrt{\sigma^2 + \epsilon}} \bigg) + \bigg( \frac{\partial f}{\partial \sigma^2} \cdot \frac{1}{m} \sum\limits_{i=1}^m -2(x_i - \mu)   \bigg) \qquad \\
+&=& \bigg(\sum\limits_{i=1}^m  \frac{\partial f}{\partial \hat{x}_i} \cdot \frac{-1}{\sqrt{\sigma^2 + \epsilon}} \bigg) + \bigg( \frac{\partial f}{\partial \sigma^2} \cdot (-2) \cdot \frac{1}{m} \sum\limits_{i=1}^m x_i - \frac{1}{m} \sum\limits_{i=1}^m \mu   \bigg) \qquad \\
+&=& \bigg(\sum\limits_{i=1}^m  \frac{\partial f}{\partial \hat{x}_i} \cdot \frac{-1}{\sqrt{\sigma^2 + \epsilon}} \bigg) + \bigg( \frac{\partial f}{\partial \sigma^2} \cdot (-2) \cdot \mu - \frac{m \cdot \mu}{m} \bigg) \qquad \\
+&=& \sum\limits_{i=1}^m  \frac{\partial f}{\partial \hat{x}_i} \cdot \frac{-1}{\sqrt{\sigma^2 + \epsilon}} \qquad \\
+\end{eqnarray}
 $$
 
-You'll notice we've added a summation in $$\dfrac{\partial \hat{x}_i}{\partial \mu}$$ and that is so that the final dimensions add up.
+Thus we have:
+
+$$\boxed{\frac{\partial f}{\partial \mu} = \sum\limits_{i=1}^m  \frac{\partial f}{\partial \hat{x}_i} \cdot \frac{-1}{\sqrt{\sigma^2 + \epsilon}}}$$
 
 ---
 
@@ -198,39 +205,45 @@ $$\dfrac{\partial \sigma^2}{\partial x_i} = \dfrac{2(x_i - \mu)}{m}$$
 That's it, our final gradient is
 
 $$
-\boxed{\frac{\partial f}{\partial x} = \bigg(\frac{\partial f}{\partial \hat{x}_i} \cdot \dfrac{1}{\sqrt{\sigma^2 + \epsilon}}\bigg) + \bigg(\frac{\partial f}{\partial \mu} \cdot \dfrac{1}{m}\bigg) + \bigg(\frac{\partial f}{\partial \sigma^2} \cdot \dfrac{2(x_i - \mu)}{m}\bigg)}$$
+\frac{\partial f}{\partial x_i} = \bigg(\frac{\partial f}{\partial \hat{x}_i} \cdot \dfrac{1}{\sqrt{\sigma^2 + \epsilon}}\bigg) + \bigg(\frac{\partial f}{\partial \mu} \cdot \dfrac{1}{m}\bigg) + \bigg(\frac{\partial f}{\partial \sigma^2} \cdot \dfrac{2(x_i - \mu)}{m}\bigg)
+$$
+
+Let's plug in the partials and see if we can simplify the expression some more.
+
+$$
+\begin{eqnarray}
+\frac{\partial f}{\partial x_i} &=& \bigg(\frac{\partial f}{\partial \hat{x}_i} \cdot \dfrac{1}{\sqrt{\sigma^2 + \epsilon}}\bigg) + \bigg(\frac{\partial f}{\partial \mu} \cdot \dfrac{1}{m}\bigg) + \bigg(\frac{\partial f}{\partial \sigma^2} \cdot \dfrac{2(x_i - \mu)}{m}\bigg) \qquad \\
+&=& \frac{\partial f}{\partial \hat{x}_i} \cdot \dfrac{1}{\sqrt{\sigma^2 + \epsilon}} \ \ + \frac{1}{m} \sum\limits_{j=1}^m  \frac{\partial f}{\partial \hat{x}_j} \cdot \frac{-1}{\sqrt{\sigma^2 + \epsilon}} \ \ - 0.5 \sum\limits_{j=1}^m \frac{\partial f}{\partial \hat{x}_j} \cdot (x_j - \mu) \cdot (\sqrt{\sigma^2 + \epsilon})^{-1.5} \cdot \dfrac{2(x_i - \mu)}{m} \qquad \\
+&=& \bigg(\frac{\partial f}{\partial \hat{x}_i} \cdot (\sigma^2 + \epsilon)^{-0.5} \bigg) - \bigg(\frac{(\sigma^2 + \epsilon)^{-0.5}}{m} \sum\limits_{j=1}^m  \frac{\partial f}{\partial \hat{x}_j} \bigg) + \bigg(\frac{(\sigma^2 + \epsilon)^{-0.5}}{m} \cdot \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} \sum\limits_{j=1}^m \frac{\partial f}{\partial \hat{x}_j} \cdot \frac{(x_j - \mu)}{\sqrt{\sigma^2 + \epsilon}} \bigg )\qquad \\
+&=& \bigg(\frac{\partial f}{\partial \hat{x}_i} \cdot (\sigma^2 + \epsilon)^{-0.5} \bigg) - \bigg(\frac{(\sigma^2 + \epsilon)^{-0.5}}{m} \sum\limits_{j=1}^m  \frac{\partial f}{\partial \hat{x}_j} \bigg) + \bigg(\frac{(\sigma^2 + \epsilon)^{-0.5}}{m} \cdot \hat{x}_i \sum\limits_{j=1}^m \frac{\partial f}{\partial \hat{x}_j} \cdot \hat{x}_j \bigg )\qquad \\
+\end{eqnarray}
+$$
+
+Finally, we factorize by the `sigma + epsilon` factor and obtain:
+
+$$
+\boxed{\frac{\partial f}{\partial x_i} = \frac{(\sigma^2 + \epsilon)^{-0.5}}{m} \bigg [\color{red}{m \frac{\partial f}{\partial \hat{x}_i}} - \color{blue}{\sum\limits_{j=1}^m  \frac{\partial f}{\partial \hat{x}_j}} - \color{green}{\hat{x}_i \sum\limits_{j=1}^m \frac{\partial f}{\partial \hat{x}_j} \cdot \hat{x}_j}\bigg ]}
+$$
 
 ### Recap
-
 $$
 \color{red}{\frac{\partial f}{\partial \beta} = \sum\limits_{i=1}^m \frac{\partial f}{\partial y_i}}
 $$
+
 
 $$
 \color{blue}{\frac{\partial f}{\partial \gamma} = \sum\limits_{i=1}^m \frac{\partial f}{\partial y_i} \cdot \hat{x}_i}
 $$
 
 $$
-\color{green}{\frac{\partial f}{\partial x} = \bigg(\frac{\partial f}{\partial \hat{x}_i} \cdot \dfrac{1}{\sqrt{\sigma^2 + \epsilon}}\bigg) + \bigg(\frac{\partial f}{\partial \mu} \cdot \dfrac{1}{m}\bigg) + \bigg(\frac{\partial f}{\partial \sigma^2} \cdot \dfrac{2(x_i - \mu)}{m}\bigg)}
+\color{green}{\frac{\partial f}{\partial x_i} = \frac{(\sigma^2 + \epsilon)^{-0.5}}{m} \bigg [m \frac{\partial f}{\partial \hat{x}_i} - \sum\limits_{j=1}^m  \frac{\partial f}{\partial \hat{x}_j} - \hat{x}_i \sum\limits_{j=1}^m \frac{\partial f}{\partial \hat{x}_j} \cdot \hat{x}_j\bigg ]}
 $$
-
-where 
-
-$$
-\boxed{\dfrac{\partial f}{\partial \hat{x}_i} = \dfrac{\partial f}{\partial y_i} \cdot \gamma}
-$$ 
-
-$$
-\boxed{\dfrac{\partial \hat{x}}{\partial \sigma^2} = -0.5 \sum\limits_{i=1}^m (x_i - \mu) \cdot (\sqrt{\sigma^2 + \epsilon})^{-1.5}}
-$$ 
-
-$$
-\boxed{\dfrac{\partial f}{\partial \mu} = \bigg(\sum\limits_{i=1}^m \dfrac{\partial f}{\partial \hat{x}_i} \cdot \dfrac{-1}{\sqrt{\sigma^2 + \epsilon}} \bigg) + \bigg( \dfrac{\partial f}{\partial \sigma^2} \cdot \sum\limits_{i=1}^m -2(x_i - \mu)   \bigg)}
-$$
+with 
+$\boxed{\dfrac{\partial f}{\partial \hat{x}_i} = \dfrac{\partial f}{\partial y_i} \cdot \gamma}$
 
 ### Python Implementation
 
-Here's an example implementation using the equations we derived. I guess `dx` fits in an 80 character if you break it down like I did 😉
+Here's an example implementation using the equations we derived. `dx` is 88 characters long. I'm still wondering how the course instructors were able to write it in 80, maybe shorter variable names?
 
 ```python
 def batchnorm_backward(dout, cache):
@@ -240,15 +253,9 @@ def batchnorm_backward(dout, cache):
 
 	# intermediate partial derivatives
 	dxhat = dout * gamma
-	dvar = np.sum((dxhat * x_mu * (-0.5) * (inv_var)**3), axis=0)
-	dmu = (np.sum((dxhat * -inv_var), axis=0)) + (dvar * (-2.0 / N) *
-	 		np.sum(x_mu, axis=0))
-	dx1 = dxhat * inv_var
-	dx2 = dvar * (2.0 / N) * x_mu
-	dx3 = (1.0 / N) * dmu
 
 	# final partial derivatives
-	dx = dx1 + dx2 + dx3
+	dx = (1. / N) * inv_var * (N*dxhat - np.sum(dxhat, axis=0) - x_hat*np.sum(dxhat*x_hat, axis=0))
 	dbeta = np.sum(dout, axis=0)
 	dgamma = np.sum(x_hat*dout, axis=0)
 
