@@ -230,10 +230,10 @@ $$
 $$
 
 ### Recap
+
 $$
 \color{red}{\frac{\partial f}{\partial \beta} = \sum\limits_{i=1}^m \frac{\partial f}{\partial y_i}}
 $$
-
 
 $$
 \color{blue}{\frac{\partial f}{\partial \gamma} = \sum\limits_{i=1}^m \frac{\partial f}{\partial y_i} \cdot \hat{x}_i}
@@ -242,12 +242,12 @@ $$
 $$
 \color{green}{\frac{\partial f}{\partial x_i} = \frac{(\sigma^2 + \epsilon)^{-0.5}}{m} \bigg [m \frac{\partial f}{\partial \hat{x}_i} - \sum\limits_{j=1}^m  \frac{\partial f}{\partial \hat{x}_j} - \hat{x}_i \sum\limits_{j=1}^m \frac{\partial f}{\partial \hat{x}_j} \cdot \hat{x}_j\bigg ]}
 $$
-with 
-$\boxed{\dfrac{\partial f}{\partial \hat{x}_i} = \dfrac{\partial f}{\partial y_i} \cdot \gamma}$
+
+with $$\boxed{\dfrac{\partial f}{\partial \hat{x}_i} = \dfrac{\partial f}{\partial y_i} \cdot \gamma}$$.
 
 ### Python Implementation
 
-Here's an example implementation using the equations we derived. `dx` is 88 characters long. I'm still wondering how the course instructors were able to write it in 80, maybe shorter variable names?
+Here's an example implementation using the equations we derived. `dx` is 88 characters long so I'm still wondering how the course instructors were able to write it less than 80 - maybe shorter variable names?
 
 ```python
 def batchnorm_backward(dout, cache):
@@ -266,8 +266,17 @@ def batchnorm_backward(dout, cache):
 	return dx, dgamma, dbeta
 ```
 
+This version of the batchnorm backward pass can give you a significant boost in speed. I timed both versions and got the following console output:
+
+<p align="center">
+ <img src="/assets/speedup.png">
+</p>
+
+
 ### Conclusion
 
-In this blog post, we learned how to use the chain rule in a staged manner to derive the expression for the gradient of the batch norm layer. We also implemented it in Python using the code from CS231n. If you're interested in the staged computation method, head over to [Kratzert's nicely written post](https://kratzert.github.io/2016/02/12/understanding-the-gradient-flow-through-the-batch-normalization-layer.html).
+In this blog post, we learned how to use the chain rule in a staged manner to derive the expression for the gradient of the batch norm layer. We also saw how a smart simplification can help significantly reduce the complexity of the expression for `dx`. We finally implemented it the backward pass in Python using the code from CS231n. This version of the function resulted in a 3x speed increase! 
+
+If you're interested in the staged computation method, head over to [Kratzert's nicely written post](https://kratzert.github.io/2016/02/12/understanding-the-gradient-flow-through-the-batch-normalization-layer.html).
 
 Cheers!
