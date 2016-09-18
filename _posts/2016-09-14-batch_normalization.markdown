@@ -240,10 +240,12 @@ $$
 $$
 
 $$
-\color{green}{\frac{\partial f}{\partial x_i} = \frac{(\sigma^2 + \epsilon)^{-0.5}}{m} \bigg [m \frac{\partial f}{\partial \hat{x}_i} - \sum\limits_{j=1}^m  \frac{\partial f}{\partial \hat{x}_j} - \hat{x}_i \sum\limits_{j=1}^m \frac{\partial f}{\partial \hat{x}_j} \cdot \hat{x}_j\bigg ]}
+\frac{\partial f}{\partial x_i} =  \frac{\color{red}{m \dfrac{\partial f}{\partial \hat{x}_i}} - \color{blue}{\sum\limits_{j=1}^m  \dfrac{\partial f}{\partial \hat{x}_j}} - \color{green}{\hat{x}_i \sum\limits_{j=1}^m \dfrac{\partial f}{\partial \hat{x}_j} \cdot \hat{x}_j}}{m\sqrt{\sigma^2 + \epsilon}} 
 $$
 
-with $$\boxed{\dfrac{\partial f}{\partial \hat{x}_i} = \dfrac{\partial f}{\partial y_i} \cdot \gamma}$$.
+with 
+
+$$\boxed{\dfrac{\partial f}{\partial \hat{x}_i} = \dfrac{\partial f}{\partial y_i} \cdot \gamma}$$
 
 ### Python Implementation
 
@@ -269,7 +271,7 @@ def batchnorm_backward(dout, cache):
 This version of the batchnorm backward pass can give you a significant boost in speed. I timed both versions and got the following console output:
 
 <p align="center">
- <img src="/assets/speedup.png">
+ <img src="/assets/speedup.png" width="350">
 </p>
 
 
