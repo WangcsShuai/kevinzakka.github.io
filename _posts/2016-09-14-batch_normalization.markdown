@@ -124,9 +124,9 @@ Up to now, things are relatively simple and we've already done 2/3 of the work. 
 
 We start with $$\mu$$ and notice that $$\sigma^2$$ is a function of $$\mu$$, therefore we need to add its contribution to the partial - (I've highlighted the missing partials in red): 
 
-<p align="center">
- <img src="\assets\batch_norm\eq2.png" width="380">
-</p>
+$$
+\dfrac{\partial f}{\partial \mu} = \frac{\partial f}{\partial \hat{x}_i} \cdot \color{red}{\frac{\partial \hat{x}_i}{\partial \mu}} + \color{red}{\frac{\partial f}{\partial \sigma^2}} \cdot \color{red}{\frac{\partial \sigma^2}{\partial\mu}}
+$$
 
 Let's compute the missing partials one at a time.
 
@@ -186,13 +186,15 @@ Thus we have:
 
 $$\boxed{\frac{\partial f}{\partial \mu} = \sum\limits_{i=1}^m  \frac{\partial f}{\partial \hat{x}_i} \cdot \frac{-1}{\sqrt{\sigma^2 + \epsilon}}}$$
 
+EDIT: Just to make it clear, there's a summation in $$\dfrac{\partial \hat{x}_i}{\partial \mu}$$ because we want the dimensions to add up with respect to `dfdmu` and not `dxhatdmu`.
+
 ---
 
 We finally arrive at the last variable $$x$$. Again adding the contributions from any parameter containing $$x$$ we obtain:
 
-<p align="center">
- <img src="\assets\batch_norm\eq3.png" width="300">
-</p>
+$$
+\dfrac{\partial f}{\partial x_i} = \frac{\partial f}{\partial \hat{x}_i} \cdot \color{red}{\frac{\partial \hat{x}_i}{\partial x_i}} + \frac{\partial f}{\partial \mu} \cdot \color{red}{\frac{\partial \mu}{\partial x_i}} + \frac{\partial f}{\partial \sigma^2} \cdot \color{red}{\frac{\partial \sigma^2}{\partial x_i}}
+$$
 
 The missing pieces are super easy to compute at this point. 
 
