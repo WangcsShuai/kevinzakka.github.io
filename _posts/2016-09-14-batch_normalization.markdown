@@ -231,18 +231,18 @@ $$
 
 ### Recap
 
-For organizational purposes, let's summarize the main equations we were able to derive. Using $$\boxed{\dfrac{\partial f}{\partial \hat{x}_i} = \dfrac{\partial f}{\partial y_i} \cdot \gamma}$$ we obtain the gradient with respect to our inputs:
+For organizational purposes, let's summarize the main equations we were able to derive. Using $$\dfrac{\partial f}{\partial \hat{x}_i} = \dfrac{\partial f}{\partial y_i} \cdot \gamma$$, we obtain the gradient with respect to our inputs:
 
 $$
-\color{red}{\frac{\partial f}{\partial \beta} = \sum\limits_{i=1}^m \frac{\partial f}{\partial y_i}}
-$$
-
-$$
-\color{blue}{\frac{\partial f}{\partial \gamma} = \sum\limits_{i=1}^m \frac{\partial f}{\partial y_i} \cdot \hat{x}_i}
+\boxed{\color{red}{\frac{\partial f}{\partial \beta} = \sum\limits_{i=1}^m \frac{\partial f}{\partial y_i}}}
 $$
 
 $$
-\frac{\partial f}{\partial x_i} =  \frac{\color{red}{m \dfrac{\partial f}{\partial \hat{x}_i}} - \color{blue}{\sum\limits_{j=1}^m  \dfrac{\partial f}{\partial \hat{x}_j}} - \color{green}{\hat{x}_i \sum\limits_{j=1}^m \dfrac{\partial f}{\partial \hat{x}_j} \cdot \hat{x}_j}}{m\sqrt{\sigma^2 + \epsilon}} 
+\boxed{\color{blue}{\frac{\partial f}{\partial \gamma} = \sum\limits_{i=1}^m \frac{\partial f}{\partial y_i} \cdot \hat{x}_i}}
+$$
+
+$$
+\boxed{\frac{\partial f}{\partial x_i} =  \frac{\color{red}{m \dfrac{\partial f}{\partial \hat{x}_i}} - \color{blue}{\sum\limits_{j=1}^m  \dfrac{\partial f}{\partial \hat{x}_j}} - \color{green}{\hat{x}_i \sum\limits_{j=1}^m \dfrac{\partial f}{\partial \hat{x}_j} \cdot \hat{x}_j}}{m\sqrt{\sigma^2 + \epsilon}}}
 $$
 
 ### Python Implementation
