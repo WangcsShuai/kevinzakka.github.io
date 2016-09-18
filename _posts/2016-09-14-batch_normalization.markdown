@@ -231,6 +231,8 @@ $$
 
 ### Recap
 
+For organizational purposes, let's summarize the main equations we were able to derive. Using $$\boxed{\dfrac{\partial f}{\partial \hat{x}_i} = \dfrac{\partial f}{\partial y_i} \cdot \gamma}$$ we obtain the gradient with respect to our inputs:
+
 $$
 \color{red}{\frac{\partial f}{\partial \beta} = \sum\limits_{i=1}^m \frac{\partial f}{\partial y_i}}
 $$
@@ -242,10 +244,6 @@ $$
 $$
 \frac{\partial f}{\partial x_i} =  \frac{\color{red}{m \dfrac{\partial f}{\partial \hat{x}_i}} - \color{blue}{\sum\limits_{j=1}^m  \dfrac{\partial f}{\partial \hat{x}_j}} - \color{green}{\hat{x}_i \sum\limits_{j=1}^m \dfrac{\partial f}{\partial \hat{x}_j} \cdot \hat{x}_j}}{m\sqrt{\sigma^2 + \epsilon}} 
 $$
-
-with 
-
-$$\boxed{\dfrac{\partial f}{\partial \hat{x}_i} = \dfrac{\partial f}{\partial y_i} \cdot \gamma}$$
 
 ### Python Implementation
 
@@ -261,17 +259,18 @@ def batchnorm_backward(dout, cache):
 	dxhat = dout * gamma
 
 	# final partial derivatives
-	dx = (1. / N) * inv_var * (N*dxhat - np.sum(dxhat, axis=0) - x_hat*np.sum(dxhat*x_hat, axis=0))
+	dx = (1. / N) * inv_var * (N*dxhat - np.sum(dxhat, axis=0) 
+		- x_hat*np.sum(dxhat*x_hat, axis=0))
 	dbeta = np.sum(dout, axis=0)
 	dgamma = np.sum(x_hat*dout, axis=0)
 
 	return dx, dgamma, dbeta
 ```
 
-This version of the batchnorm backward pass can give you a significant boost in speed. I timed both versions and got the following console output:
+This version of the batchnorm backward pass can give you a significant boost in speed. I timed both versions and got a superb threefold increase in speed:
 
 <p align="center">
- <img src="/assets/speedup.png" width="350">
+ <img src="/assets/speedup.png" width="400">
 </p>
 
 
