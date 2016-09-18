@@ -171,6 +171,8 @@ $$
 \end{eqnarray}
 $$
 
+---
+
 With all that out of the way, let's plug everything back in our previous partial!
 
 $$
