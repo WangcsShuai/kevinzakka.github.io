@@ -34,7 +34,7 @@ By the way, if you missed out on the livestreams, you can still view them at the
 According to Ng, with the rise of the Internet, Mobile and IOT era, the amount of data accessible to us has greatly increased. This correlates directly to a boost in the performance of neural network models, especially the larger ones which have the capacity to absorb all this data.
 
 <p align="center">
- <img src="perf_vs_data.png" width="450">
+ <img src="/assets/app_dl/perf_vs_data.png" width="450">
 </p>
 
 However, in the small data regime (left-hand side of the x-axis), the relative ordering of the algorithms is not that well defined and really depends on who is more motivated to engineer their features better, or refine and tune the hyperparameters of their model. 
@@ -50,7 +50,7 @@ The rise of big data has put pressure on companies in the sense that a *Computer
 Work in DL can be categorized in the following 4 buckets.
 
 <p align="center">
- <img src="bucket.svg" width="350">
+ <img src="/assets/app_dl/bucket.svg" width="350">
 </p>
 
 Most of the value in the industry today is driven by the models in the orange rectangle (innovation and monetization mostly) but Andrew believes that **unsupervised deep learning** is a super-exciting field that has lots of potential for the future.
@@ -66,7 +66,7 @@ A major improvement in the end-to-end approach has been the fact that outputs ar
 Essentially, it means that AI practitioners are shying away from intermediate representations and going directly from one end (raw input) to the other end (output) Here's an example from speech recognition.
 
 <p align="center">
- <img src="end-to-end.svg" width="340">
+ <img src="/assets/app_dl/end-to-end.svg" width="340">
 </p>
 
 **Are there any disadvantages to this approach?**
