@@ -47,7 +47,7 @@ Thus this trend is more prevalent in the big data realm where hand engineering e
  <img src="/assets/app_dl/bucket.svg" width="350">
 </p>
 
-Most of the value in the industry today is driven by the models in the orange rectangle (innovation and monetization mostly) but Andrew believes that **unsupervised deep learning** is a super-exciting field that has loads of potential for the future.
+Most of the value in the industry today is driven by the models in the orange blob (innovation and monetization mostly) but Andrew believes that **unsupervised deep learning** is a super-exciting field that has loads of potential for the future.
 
 <a name='toc2'></a>
 
