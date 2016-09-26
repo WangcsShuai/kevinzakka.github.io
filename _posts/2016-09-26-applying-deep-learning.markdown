@@ -2,7 +2,7 @@
 layout: post
 title: "Nuts and Bolts of Applying Deep Learning"
 date: 2016-09-26
-excerpt: "A comprehensive summary of Andrew Ng's talk at the Bay Area Deep Learning School (2016)"
+excerpt: "A comprehensive summary of Andrew Ng's talk at the 2016 Bay Area Deep Learning School"
 tags: [deep learning, bias, variance, advice, end-to-end, machine learning]
 comments: true
 mathjax: true
