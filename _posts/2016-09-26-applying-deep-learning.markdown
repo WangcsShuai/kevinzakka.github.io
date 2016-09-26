@@ -63,24 +63,35 @@ A major improvement in the end-to-end approach has been the fact that outputs ar
 
 **Are there any disadvantages to this approach?** End-to-end approaches are data hungry meaning they only perform well when provided with a huge dataset of labelled examples. In practice, not all applications have the luxury of large labelled datasets so other approaches which allow hand-engineered information and field expertise to be added into the model have gained the upper hand. As an example, in a self-driving car setting, going directly from the raw image to the steering direction is pretty difficult. Rather, many features such as trajectory and pedestrian location are calculated first as intermediate steps.
 
-
 The main take-away from this section is that we should always be cautious of end-to-end approaches in applications where huge data is hard to come by. 
 
 <a name='toc3'></a>
 
 ### Bias-Variance Tradeoff
 
-**Splitting your data.** When
+**Splitting your data.** In most deep learning problems, train and test come from different distributions. For example, suppose you are working on implementing an AI powered rearview mirror and have gathered 2 chunks of data: the first, larger chunk comes from many places (could be partly bought, and partly crowdsourced) and the second, much smaller chunk is actual car data.
 
-
-**Flowchart for working with a model.**
+In this case, splitting the data into train/dev/test can be tricky. One might be tempted to carve the dev set out of the training chunk like in the first example of the diagram below. (Note that the chunk on the left corresponds to data mined from the first distribution and the one on the right to the one from the second distribution.)
 
 <p align="center">
- <img src="/assets/app_dl/flowchart.svg" width="500">
+ <img src="/assets/app_dl/split.svg" width="500">
+</p> 
+
+This is bad because we usually want our dev and test to come from the same distribution. The reason for this is that because a part of the team will be spending a lot of time tuning the model to work well on the dev set, if the test set were to turn out very different from the dev set, then pretty much all the work would have been wasted effort.
+
+Hence, a smarter way of splitting the above dataset would be just like the second line of the diagram. Now in practice, Andrew recommends creating dev sets from both data distributions: a train-dev and test-dev set. In this manner, any gap between the different errors can help you tackle the problem more clearly.
+
+<p align="center">
+ <img src="/assets/app_dl/errors.svg" width="450">
+</p> 
+
+**Flowchart for working with a model.** Given what we have described above, here's a simplified flowchart of the actions you should take when confronted with training/tuning a DL model. 
+
+<p align="center">
+ <img src="/assets/app_dl/flowachart.svg" width="500">
 </p>
 
-**The importance of data synthesis.**
-
+**The importance of data synthesis.** Andrew also stressed the importance of data synthesis as part of any workflow in deep learning. While it may be painful to manually engineer training examples, the relative gain in performance you obtain once the parameters and the model fit well are huge and worth your while.
 
 <a name='toc4'></a>
 
@@ -113,12 +124,11 @@ Finally, one might ask what is a good way of defining human-level accuracy. For 
 
 The answer is always the best accuracy possible. This is because, as we mentioned earlier, human-level performance is a proxy for the bayes optimal error rate, so providing a more accurate upper bound to your performance can help you strategize your next move.  
 
-
 <a name='toc5'></a>
 
 ### Personal Advice
 
-Andrew ended the presentation with 2 ways to improve your skills in the field of deep learning.
+Andrew ended the presentation with 2 ways one can improve his/her skills in the field of deep learning.
 
 - **Practice, Practice, Practice**: compete in Kaggle competitions and read associated blog posts and forum discussions.
 - **Do the Dirty Work**: read a lot of papers and try to replicate the results. Soon enough, you'll get your own ideas and build your own models.
