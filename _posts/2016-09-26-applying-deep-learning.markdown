@@ -19,17 +19,17 @@ By the way, if you missed out on the livestreams, you can still view them at the
 
 **Table of Contents**:
 
-1. [Major Deep Learning Trends](#toc1)
-2. [End-to-End Deep Learning](#toc2)
-3. [Bias-Variance Tradeoff](#toc3)
-4. [Human-level Performance](#toc4)
-5. [Personal Advice](#toc5)
+- [Major Deep Learning Trends](#toc1)
+- [End-to-End Deep Learning](#toc2)
+- [Bias-Variance Tradeoff](#toc3)
+- [Human-level Performance](#toc4)
+- [Personal Advice](#toc5)
 
 <a name='toc1'></a>
 
 ### Major Deep Learning Trends
 
-- **Why do DL algorithms work so well?**
+**Why do DL algorithms work so well?**
 
 According to Ng, with the rise of the Internet, Mobile and IOT era, the amount of data accessible to us has greatly increased. This correlates directly to a boost in the performance of neural network models, especially the larger ones which have the capacity to absorb all this data.
 
@@ -41,11 +41,11 @@ However, in the small data regime (left-hand side of the x-axis), the relative o
 
 Thus this trend is more prevalent in the big data realm where hand engineering effectively gets replaced by end-to-end approaches and bigger neural nets combined with a lot of data tend to outperform all other models.
 
-- **Machine Learning and HPC team** 
+**ML and HPC team cooperation** 
 
-The rise of big data has put pressure on companies in the sense that a *Computer Systems* team is now required. This is because some of the HPC (high-performance computing) applications require highly specialized knowledge and it is difficult to find researchers and engineers with sufficient knowledge in both fields. Knowledge and cooperation from both teams is then the key to boosting performance in AI companies.
+The rise of big data has put pressure on companies in the sense that a *Computer Systems* team is now required. This is because some of the high-performance computing (HPC) applications require highly specialized knowledge and it is difficult to find researchers and engineers with sufficient knowledge in both fields. Thus, cooperation from both teams is the key to boosting performance in AI companies.
 
-- **Categorizing DL models**
+**Categorizing DL models**
 
 Work in DL can be categorized in the following 4 buckets.
 
@@ -53,7 +53,7 @@ Work in DL can be categorized in the following 4 buckets.
  <img src="/assets/app_dl/bucket.svg" width="350">
 </p>
 
-Most of the value in the industry today is driven by the models in the orange rectangle (innovation and monetization mostly) but Andrew believes that **unsupervised deep learning** is a super-exciting field that has lots of potential for the future.
+Most of the value in the industry today (innovation and monetization) lies in the orange circle but Andrew believes that **Unsupervised Deep Learning** is a super-exciting field that has loads of potential for the future.
 
 <a name='toc2'></a>
 
@@ -72,7 +72,6 @@ Essentially, it means that AI practitioners are shying away from intermediate re
 **Are there any disadvantages to this approach?**
 
 End-to-end approaches are data hungry meaning they only perform well when provided with a huge dataset of labelled examples. In practice, not all applications have the luxury of large labelled datasets so other approaches which allow hand-engineered information and field expertise to be added into the model have gained the upper hand. As an example, in a self-driving car setting, going directly from the raw image to the steering direction is pretty difficult. Rather, many features such as trajectory and pedestrian location are calculated first as intermediate steps.
-
 
 The main take-away from this section is that we should always be cautious of end-to-end approaches in applications where huge data is hard to come by. 
 
