@@ -29,9 +29,7 @@ By the way, if you missed out on the livestreams, you can still view them at the
 
 ### Major Deep Learning Trends
 
-**Why do DL algorithms work so well?**
-
-According to Ng, with the rise of the Internet, Mobile and IOT era, the amount of data accessible to us has greatly increased. This correlates directly to a boost in the performance of neural network models, especially the larger ones which have the capacity to absorb all this data.
+**Why do DL algorithms work so well?** According to Ng, with the rise of the Internet, Mobile and IOT era, the amount of data accessible to us has greatly increased. This correlates directly to a boost in the performance of neural network models, especially the larger ones which have the capacity to absorb all this data.
 
 <p align="center">
  <img src="/assets/app_dl/perf_vs_data.png" width="450">
@@ -41,13 +39,9 @@ However, in the small data regime (left-hand side of the x-axis), the relative o
 
 Thus this trend is more prevalent in the big data realm where hand engineering effectively gets replaced by end-to-end approaches and bigger neural nets combined with a lot of data tend to outperform all other models.
 
-**ML and HPC team cooperation** 
+**ML and HPC team cooperation.** The rise of big data has put pressure on companies in the sense that a *Computer Systems* team is now required. This is because some of the high-performance computing (HPC) applications require highly specialized knowledge and it is difficult to find researchers and engineers with sufficient knowledge in both fields. Thus, cooperation from both teams is the key to boosting performance in AI companies.
 
-The rise of big data has put pressure on companies in the sense that a *Computer Systems* team is now required. This is because some of the high-performance computing (HPC) applications require highly specialized knowledge and it is difficult to find researchers and engineers with sufficient knowledge in both fields. Thus, cooperation from both teams is the key to boosting performance in AI companies.
-
-**Categorizing DL models**
-
-Work in DL can be categorized in the following 4 buckets.
+**Categorizing DL models.** Work in DL can be categorized in the following 4 buckets.
 
 <p align="center">
  <img src="/assets/app_dl/bucket.svg" width="350">
